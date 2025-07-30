@@ -590,6 +590,16 @@
 
     move-result-object v1
 
+    if-nez v1, :cond_0
+
+    .line 385
+    const/4 v1, 0x0
+
+    :goto_0
+    return-void
+
+    .line 386
+    :cond_0
     check-cast v1, Lcom/puddingstudio/cardgame/scene/LoginScene;
 
     check-cast v1, Lcom/puddingstudio/cardgame/scene/LoginScene;

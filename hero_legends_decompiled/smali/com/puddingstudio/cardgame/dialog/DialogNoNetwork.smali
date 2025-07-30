@@ -298,6 +298,8 @@
     .line 87
     iget-object v0, p0, Lcom/puddingstudio/cardgame/dialog/DialogNoNetwork;->login_scene:Lcom/puddingstudio/cardgame/scene/LoginScene;
 
+    if-eqz v0, :cond_1
+
     const/4 v1, 0x0
 
     const/4 v2, -0x1
@@ -315,6 +317,8 @@
 
     .line 91
     sget-object v0, Lcom/badlogic/gdx/Gdx;->app:Lcom/badlogic/gdx/Application;
+
+    if-eqz v0, :cond_1
 
     invoke-interface {v0}, Lcom/badlogic/gdx/Application;->exit()V
 
