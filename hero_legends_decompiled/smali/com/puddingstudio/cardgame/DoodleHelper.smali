@@ -1650,29 +1650,15 @@
 .end method
 
 .method public showDialogLoading(Z)V
-    .locals 2
-    .param p1, "dismiss_when_finished"    # Z
+    .locals 1
+    .param p1, "show"    # Z
 
     .prologue
-    .line 412
-    const/16 v1, 0x12
-
-    invoke-virtual {p0, v1}, Lcom/puddingstudio/cardgame/DoodleHelper;->getDialog(I)Lcom/puddingstudio/cardgame/engine/IDialog;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/puddingstudio/cardgame/dialog/DialogLoading;
-
-    .line 413
-    .local v0, "dialog":Lcom/puddingstudio/cardgame/dialog/DialogLoading;
-    invoke-virtual {v0, p1}, Lcom/puddingstudio/cardgame/dialog/DialogLoading;->setDismissWhenFinished(Z)V
-
-    .line 414
-    const/4 v1, 0x1
-
-    invoke-virtual {p0, v0, v1}, Lcom/puddingstudio/cardgame/DoodleHelper;->popDialog(Lcom/puddingstudio/cardgame/engine/IDialog;Z)V
-
-    .line 415
+    # EXTREME PATCH: 完全禁用加载对话框
+    const-string v0, "showDialogLoading被拦截，不显示加载对话框"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    # 直接返回，不显示任何对话框
     return-void
 .end method
 

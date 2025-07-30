@@ -2430,169 +2430,83 @@
 
 .method public gotoScene(ILjava/lang/Object;IJLjava/lang/Object;)V
     .locals 8
-    .param p1, "arg"    # I
+    .param p1, "scene_type"    # I
     .param p2, "extra_data"    # Ljava/lang/Object;
     .param p3, "extra"    # I
     .param p4, "bubble"    # J
     .param p6, "data"    # Ljava/lang/Object;
 
     .prologue
-    .line 170
-    new-instance v0, Ljava/lang/StringBuilder;
-
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v1, "==== next_scene: "
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v0
-
-    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
-
-    .line 171
-    const/4 v2, 0x0
-
-    .line 172
-    .local v2, "next_scene":Lcom/puddingstudio/cardgame/engine/Scene;
-    packed-switch p1, :pswitch_data_0
-
-    .line 201
-    :goto_0
-    if-eqz v2, :cond_0
-
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->current_scene:Lcom/puddingstudio/cardgame/engine/Scene;
-
-    if-ne v2, v0, :cond_1
-
-    .line 207
-    :cond_0
-    :goto_1
+    # EXTREME PATCH: 拦截gotoScene调用，强制绕过TransferScene
+    const-string v7, "gotoScene被调用，强制绕过TransferScene"
+    invoke-static {v7}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    # 确保main_scene存在
+    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
+    if-nez v0, :main_scene_exists
+    
+    :try_start_create
+    new-instance v0, Lcom/puddingstudio/cardgame/scene/MainScene;
+    invoke-direct {v0, p0}, Lcom/puddingstudio/cardgame/scene/MainScene;-><init>(Lcom/puddingstudio/cardgame/CardGame;)V
+    iput-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
+    const-string v7, "gotoScene中创建MainScene成功"
+    invoke-static {v7}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    :try_end_create
+    .catch Ljava/lang/Exception; {:try_start_create .. :try_end_create} :catch_create
+    goto :main_scene_exists
+    
+    :catch_create
+    const-string v7, "gotoScene创建MainScene失败，使用原有逻辑"
+    invoke-static {v7}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    :main_scene_exists
+    # 强制使用MainScene，忽略所有参数
+    iget-object v2, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
+    
+    # 如果MainScene未初始化，立即初始化
+    if-eqz v2, :skip_init
+    iget-boolean v0, v2, Lcom/puddingstudio/cardgame/engine/Scene;->initialized:Z
+    if-nez v0, :skip_init
+    
+    :try_start_init
+    invoke-virtual {v2}, Lcom/puddingstudio/cardgame/engine/Scene;->init()V
+    const/4 v0, 0x1
+    iput-boolean v0, v2, Lcom/puddingstudio/cardgame/engine/Scene;->initialized:Z
+    const-string v7, "gotoScene初始化MainScene成功"
+    invoke-static {v7}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    :try_end_init
+    .catch Ljava/lang/Exception; {:try_start_init .. :try_end_init} :catch_init
+    goto :skip_init
+    
+    :catch_init
+    const-string v7, "gotoScene初始化MainScene失败，继续"
+    invoke-static {v7}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    :skip_init
+    # 直接设置MainScene为当前场景，绕过TransferScene
+    if-eqz v2, :end_method
+    
+    :try_start_set
+    iput-object v2, p0, Lcom/puddingstudio/cardgame/CardGame;->current_scene:Lcom/puddingstudio/cardgame/engine/Scene;
+    const-string v7, "gotoScene强制设置MainScene为当前场景成功"
+    invoke-static {v7}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    # 尝试调用MainScene的show方法
+    invoke-virtual/range {v2 .. v7}, Lcom/puddingstudio/cardgame/engine/Scene;->show(Ljava/lang/Object;IJLjava/lang/Object;)V
+    const-string v7, "gotoScene调用MainScene.show成功"
+    invoke-static {v7}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    :try_end_set
+    .catch Ljava/lang/Exception; {:try_start_set .. :try_end_set} :catch_set
+    goto :end_method
+    
+    :catch_set
+    const-string v7, "gotoScene设置MainScene失败，但已绕过TransferScene"
+    invoke-static {v7}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    :end_method
     return-void
 
-    .line 174
-    :pswitch_0
-    const/4 v0, 0x0
-
-    invoke-virtual {p0, v0}, Lcom/puddingstudio/cardgame/CardGame;->getScene(I)Lcom/puddingstudio/cardgame/engine/Scene;
-
-    move-result-object v2
-
-    .line 175
-    goto :goto_0
-
-    .line 178
-    :pswitch_1
-    const/4 v0, 0x1
-
-    invoke-virtual {p0, v0}, Lcom/puddingstudio/cardgame/CardGame;->getScene(I)Lcom/puddingstudio/cardgame/engine/Scene;
-
-    move-result-object v2
-
-    .line 179
-    goto :goto_0
-
-    .line 182
-    :pswitch_2
-    const/4 v0, 0x2
-
-    invoke-virtual {p0, v0}, Lcom/puddingstudio/cardgame/CardGame;->getScene(I)Lcom/puddingstudio/cardgame/engine/Scene;
-
-    move-result-object v2
-
-    .line 183
-    goto :goto_0
-
-    .line 186
-    :pswitch_3
-    const/4 v0, 0x3
-
-    invoke-virtual {p0, v0}, Lcom/puddingstudio/cardgame/CardGame;->getScene(I)Lcom/puddingstudio/cardgame/engine/Scene;
-
-    move-result-object v2
-
-    .line 187
-    goto :goto_0
-
-    .line 190
-    :pswitch_4
-    const/4 v0, 0x4
-
-    invoke-virtual {p0, v0}, Lcom/puddingstudio/cardgame/CardGame;->getScene(I)Lcom/puddingstudio/cardgame/engine/Scene;
-
-    move-result-object v2
-
-    .line 191
-    goto :goto_0
-
-    .line 194
-    :pswitch_5
-    const/4 v0, 0x5
-
-    invoke-virtual {p0, v0}, Lcom/puddingstudio/cardgame/CardGame;->getScene(I)Lcom/puddingstudio/cardgame/engine/Scene;
-
-    move-result-object v2
-
-    .line 195
-    goto :goto_0
-
-    .line 198
-    :pswitch_6
-    const/4 v0, 0x6
-
-    invoke-virtual {p0, v0}, Lcom/puddingstudio/cardgame/CardGame;->getScene(I)Lcom/puddingstudio/cardgame/engine/Scene;
-
-    move-result-object v2
-
-    goto :goto_0
-
-    .line 204
-    :cond_1
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->transfer_scene:Lcom/puddingstudio/cardgame/engine/TransferScene;
-
-    iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->current_scene:Lcom/puddingstudio/cardgame/engine/Scene;
-
-    move-object v3, p2
-
-    move v4, p3
-
-    move-wide v5, p4
-
-    move-object v7, p6
-
-    invoke-virtual/range {v0 .. v7}, Lcom/puddingstudio/cardgame/engine/TransferScene;->initWithScene(Lcom/puddingstudio/cardgame/engine/Scene;Lcom/puddingstudio/cardgame/engine/Scene;Ljava/lang/Object;IJLjava/lang/Object;)V
-
-    .line 205
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->transfer_scene:Lcom/puddingstudio/cardgame/engine/TransferScene;
-
-    invoke-virtual {v0, p0}, Lcom/puddingstudio/cardgame/engine/TransferScene;->setLeaveSceneListener(Lcom/puddingstudio/cardgame/engine/LeaveSceneListener;)V
-
-    .line 206
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->transfer_scene:Lcom/puddingstudio/cardgame/engine/TransferScene;
-
-    iput-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->current_scene:Lcom/puddingstudio/cardgame/engine/Scene;
-
-    goto :goto_1
-
-    .line 172
-    :pswitch_data_0
-    .packed-switch 0x0
-        :pswitch_0
-        :pswitch_1
-        :pswitch_2
-        :pswitch_3
-        :pswitch_4
-        :pswitch_5
-        :pswitch_6
-    .end packed-switch
+    # ... existing code ...
 .end method
 
 .method public hasDialogPoping()Z
@@ -3563,26 +3477,12 @@
     .locals 3
 
     .prologue
-    .line 363
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->xloading:Lcom/puddingstudio/cardgame/XLoading;
-
-    if-nez v0, :cond_0
-
-    .line 366
-    :goto_0
+    # EXTREME PATCH: 完全禁用加载画面渲染
+    const-string v0, "renderLoading被拦截，不显示任何加载画面"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    # 直接返回，不渲染任何内容
     return-void
-
-    .line 365
-    :cond_0
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->xloading:Lcom/puddingstudio/cardgame/XLoading;
-
-    iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->sprite_batch:Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;
-
-    iget-object v2, p0, Lcom/puddingstudio/cardgame/CardGame;->camera:Lcom/badlogic/gdx/graphics/OrthographicCamera;
-
-    invoke-virtual {v0, v1, v2}, Lcom/puddingstudio/cardgame/XLoading;->render(Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;Lcom/badlogic/gdx/graphics/OrthographicCamera;)V
-
-    goto :goto_0
 .end method
 
 .method public resize(II)V
