@@ -605,6 +605,46 @@
 
     invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
 
+    # EXTREME PATCH: 强制初始化离线玩家数据和MainScene
+    const-string v0, "开始极限初始化补丁..."
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    :try_start_extreme_init
+    # 初始化离线玩家数据
+    invoke-static {}, Lcom/puddingstudio/cardgame/data/ItemManager;->getInstance()Lcom/puddingstudio/cardgame/data/ItemManager;
+    move-result-object v0
+    invoke-virtual {v0}, Lcom/puddingstudio/cardgame/data/ItemManager;->initOfflinePlayer()V
+    const-string v0, "离线玩家数据初始化成功"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    # 强制创建MainScene并设置为当前场景
+    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
+    if-nez v0, :main_scene_ready
+    new-instance v0, Lcom/puddingstudio/cardgame/scene/MainScene;
+    invoke-direct {v0, p0}, Lcom/puddingstudio/cardgame/scene/MainScene;-><init>(Lcom/puddingstudio/cardgame/CardGame;)V
+    iput-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
+    const-string v1, "MainScene创建成功"
+    invoke-static {v1}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    :main_scene_ready
+    # 强制设置current_scene为main_scene
+    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
+    iput-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->current_scene:Lcom/puddingstudio/cardgame/engine/Scene;
+    const-string v0, "当前场景强制设置为MainScene"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    :try_end_extreme_init
+    .catch Ljava/lang/Exception; {:try_start_extreme_init .. :try_end_extreme_init} :catch_extreme_init
+    goto :extreme_init_done
+    
+    :catch_extreme_init
+    const-string v0, "极限初始化失败，但继续执行"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    :extreme_init_done
+    const-string v0, "极限初始化补丁完成"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+
     .line 155
     return-void
 .end method
@@ -2125,29 +2165,33 @@
 
     .line 377
     :pswitch_0
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->login_scene:Lcom/puddingstudio/cardgame/scene/LoginScene;
+    # EXTREME PATCH: 强制返回MainScene替代LoginScene
+    const-string v0, "getScene(0) 被调用，强制返回MainScene"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
 
     if-nez v0, :cond_0
 
     .line 378
-    new-instance v0, Lcom/puddingstudio/cardgame/scene/LoginScene;
+    new-instance v0, Lcom/puddingstudio/cardgame/scene/MainScene;
 
     iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->sprite_batch:Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;
 
-    invoke-direct {v0, v2, v3, v1}, Lcom/puddingstudio/cardgame/scene/LoginScene;-><init>(FFLcom/badlogic/gdx/graphics/g2d/SpriteBatch;)V
+    invoke-direct {v0, v2, v3, v1}, Lcom/puddingstudio/cardgame/scene/MainScene;-><init>(FFLcom/badlogic/gdx/graphics/g2d/SpriteBatch;)V
 
-    iput-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->login_scene:Lcom/puddingstudio/cardgame/scene/LoginScene;
+    iput-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
 
     .line 379
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->login_scene:Lcom/puddingstudio/cardgame/scene/LoginScene;
+    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
 
     iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->camera:Lcom/badlogic/gdx/graphics/OrthographicCamera;
 
-    invoke-virtual {v0, v1, v4}, Lcom/puddingstudio/cardgame/scene/LoginScene;->setCamera(Lcom/badlogic/gdx/graphics/OrthographicCamera;Z)V
+    invoke-virtual {v0, v1, v4}, Lcom/puddingstudio/cardgame/scene/MainScene;->setCamera(Lcom/badlogic/gdx/graphics/OrthographicCamera;Z)V
 
     .line 381
     :cond_0
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->login_scene:Lcom/puddingstudio/cardgame/scene/LoginScene;
+    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
 
     goto :goto_0
 
@@ -3213,7 +3257,30 @@
 
     .line 315
     :cond_3
+    # EXTREME PATCH: 强制只渲染MainScene，完全绕过LoginScene
+    iget-object v6, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
+    
+    # 如果main_scene为空，创建一个新的
+    if-nez v6, :main_scene_exists
+    
+    :try_start_main_scene
+    new-instance v6, Lcom/puddingstudio/cardgame/scene/MainScene;
+    invoke-direct {v6, p0}, Lcom/puddingstudio/cardgame/scene/MainScene;-><init>(Lcom/puddingstudio/cardgame/CardGame;)V
+    iput-object v6, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
+    const-string v7, "强制创建MainScene成功"
+    invoke-static {v7}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    :try_end_main_scene
+    .catch Ljava/lang/Exception; {:try_start_main_scene .. :try_end_main_scene} :catch_main_scene
+    goto :main_scene_exists
+    
+    :catch_main_scene
+    const-string v7, "创建MainScene失败，使用current_scene"
+    invoke-static {v7}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
     iget-object v6, p0, Lcom/puddingstudio/cardgame/CardGame;->current_scene:Lcom/puddingstudio/cardgame/engine/Scene;
+    
+    :main_scene_exists
+    # 强制设置current_scene为main_scene
+    iput-object v6, p0, Lcom/puddingstudio/cardgame/CardGame;->current_scene:Lcom/puddingstudio/cardgame/engine/Scene;
 
     if-eqz v6, :cond_5
 
@@ -3227,13 +3294,13 @@
     if-nez v6, :cond_4
 
     .line 317
-    iget-object v6, p0, Lcom/puddingstudio/cardgame/CardGame;->current_scene:Lcom/puddingstudio/cardgame/engine/Scene;
+    iget-object v6, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
 
     invoke-virtual {v6, v1}, Lcom/puddingstudio/cardgame/engine/Scene;->update(F)V
 
     .line 318
     :cond_4
-    iget-object v6, p0, Lcom/puddingstudio/cardgame/CardGame;->current_scene:Lcom/puddingstudio/cardgame/engine/Scene;
+    iget-object v6, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
 
     iget-object v7, p0, Lcom/puddingstudio/cardgame/CardGame;->sprite_batch:Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;
 
@@ -3596,11 +3663,26 @@
 .end method
 
 .method public setScene(Lcom/puddingstudio/cardgame/engine/Scene;)V
-    .locals 0
+    .locals 2
     .param p1, "scene"    # Lcom/puddingstudio/cardgame/engine/Scene;
 
     .prologue
     .line 158
+    # EXTREME PATCH: 阻止设置LoginScene，强制使用MainScene
+    if-nez p1, :check_scene_type
+    const-string v0, "setScene被调用但scene为null，使用MainScene"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    iget-object p1, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
+    goto :set_current_scene
+    
+    :check_scene_type
+    instance-of v0, p1, Lcom/puddingstudio/cardgame/scene/LoginScene;
+    if-eqz v0, :set_current_scene
+    const-string v0, "阻止设置LoginScene，强制使用MainScene"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    iget-object p1, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
+    
+    :set_current_scene
     iput-object p1, p0, Lcom/puddingstudio/cardgame/CardGame;->current_scene:Lcom/puddingstudio/cardgame/engine/Scene;
 
     .line 159
