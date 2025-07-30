@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:gravity="center" android:layout_width="259.0dip" android:layout_height="177.0dip">
+        <ImageView android:background="@drawable/dialog_background" android:layout_width="259.0dip" android:layout_height="177.0dip" android:layout_marginLeft="10.0dip" />
+        <Button android:id="@id/dialog_search_button_no" android:background="@drawable/dialog_namecancel" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_marginLeft="225.0dip" android:layout_marginTop="5.0dip" />
+        <TextView android:textColor="#fffaf399" android:id="@id/dialog_search_dialog_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:text="@string/dialog_search_friend_title" android:layout_centerHorizontal="true" />
+        <TextView android:gravity="left" android:id="@id/dialog_search_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="40.0dip" android:text="@string/dialog_search_friend_content" />
+        <EditText android:textColor="#ffffffff" android:gravity="center" android:id="@id/dialog_search_edit_text" android:background="@drawable/dialog_nameinputbk" android:layout_width="150.0dip" android:layout_height="40.0dip" android:layout_marginLeft="62.0dip" android:layout_marginTop="70.0dip" android:minEms="12" android:singleLine="true" android:maxLength="14" android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" android:inputType="text" android:imeOptions="actionDone" />
+        <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="120.0dip">
+            <Button android:id="@id/dialog_search_button_yes" android:background="@drawable/dialog_nameyes" android:layout_width="79.0dip" android:layout_height="36.0dip" android:layout_marginLeft="100.0dip" />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

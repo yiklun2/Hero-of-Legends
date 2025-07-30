@@ -1,0 +1,140 @@
+{
+  "armature_data": [
+    {
+      "strVersion": "0.4.0.0",
+      "version": 0.4,
+      "name": "hitx",
+      "bone_data": [
+        {
+          "name": "Layer2",
+          "parent": "",
+          "x": 0.0,
+          "y": 0.0,
+          "z": 1,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 0.0,
+          "kY": 0.0,
+          "arrow_x": 0.0,
+          "arrow_y": 0.0,
+          "effectbyskeleton": false,
+          "display_data": [
+            {
+              "name": "hitx.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "animation_data": [
+    {
+      "name": "hitx",
+      "mov_data": [
+        {
+          "name": "Animation1",
+          "dr": 20,
+          "lp": false,
+          "to": 0,
+          "drTW": 0,
+          "twE": 0,
+          "sc": 1.33333337,
+          "mov_bone_data": [
+            {
+              "name": "Layer2",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": -1.0,
+                  "y": -13.1580811,
+                  "z": 0,
+                  "cX": 0.423729,
+                  "cY": 0.42,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0
+                },
+                {
+                  "dI": 0,
+                  "x": -1.0,
+                  "y": -13.1580811,
+                  "z": 0,
+                  "cX": 1.2,
+                  "cY": 1.2,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 5,
+                  "twE": 0
+                },
+                {
+                  "dI": 0,
+                  "x": -1.0,
+                  "y": -13.1580811,
+                  "z": 0,
+                  "cX": 0.423729,
+                  "cY": 0.42,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 15,
+                  "twE": 0
+                },
+                {
+                  "dI": 0,
+                  "x": -1.0,
+                  "y": -13.1580811,
+                  "z": 0,
+                  "cX": 0.423729,
+                  "cY": 0.42,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 20,
+                  "twE": 0,
+                  "color": [
+                    {
+                      "a": 0,
+                      "r": 255,
+                      "g": 255,
+                      "b": 255
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "texture_data": [
+    {
+      "name": "aaa",
+      "width": 192.0,
+      "height": 240.0,
+      "pX": 0.5,
+      "pY": 0.5
+    },
+    {
+      "name": "hitx",
+      "width": 177.0,
+      "height": 166.0,
+      "pX": 0.497175127,
+      "pY": 0.5
+    }
+  ],
+  "config_file_path": [
+    "hitx0.plist"
+  ]
+}

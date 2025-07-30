@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TabWidget" />
+    <style name="NobackDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/dm_no_back</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <style name="NobackDialogX" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/dm_no_back</item>
+    </style>
+    <style name="com_facebook_loginview_default_style" parent="@android:style/Widget.Button">
+        <item name="android:textSize">@dimen/com_facebook_loginview_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/com_facebook_loginview_text_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/com_facebook_button_blue</item>
+        <item name="android:paddingLeft">@dimen/com_facebook_loginview_padding_left</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="com_facebook_loginview_silver_style" parent="@android:style/Widget.Button">
+        <item name="android:textSize">18.0sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ff4b5164</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/com_facebook_loginbutton_silver</item>
+        <item name="android:height">44.0dip</item>
+        <item name="android:width">205.0dip</item>
+    </style>
+    <style name="tooltip_bubble_text">
+        <item name="android:textSize">12.0sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">left</item>
+        <item name="android:shadowColor">#40000000</item>
+        <item name="android:shadowDy">-1.0</item>
+        <item name="android:shadowRadius">0.25</item>
+    </style>
+    <style name="GameScreen">
+        <item name="android:gravity">center</item>
+        <item name="android:visibility">visible</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+    <style name="LLScreen" parent="@style/GameScreen">
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">30.0dip</item>
+    </style>
+    <style name="InvPopup" parent="@style/LLScreen">
+        <item name="android:gravity">top</item>
+        <item name="android:layout_gravity">top</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/bg_accept</item>
+        <item name="android:padding">10.0dip</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="InvPopupText">
+        <item name="android:textColor">@color/PopupTextColor</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">200.0dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/inv_popup_text</item>
+    </style>
+    <style name="GameButton">
+        <item name="android:background">@drawable/button_accept</item>
+        <item name="android:paddingLeft">10.0dip</item>
+        <item name="android:paddingRight">10.0dip</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="InvPopupButton" parent="@style/GameButton" />
+</resources>

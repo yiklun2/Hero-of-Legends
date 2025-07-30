@@ -1,0 +1,234 @@
+tselecthero
+당신의 첫번째 영웅을 고르시오.
+prelv
+레벨
+preexp
+경험치
+prestr
+스태미나
+bp0
+영웅
+bp1
+강화
+bp2
+소환
+bp3
+컬렉션
+bp4
+장려
+bp5
+메뉴
+textbattle
+배틀
+textorderby
+순서
+dialogbtsell
+팔기
+btsellx
+팔기
+tsell
+팔기
+btback
+돌아가기
+btclaim
+받기
+btlast
+최근 이벤트
+btoptions
+옵션
+poptions
+옵션
+bthelp
+도움말
+btabout
+관하여
+btfb
+페이스북 계정과 연계하기
+btfbun
+페이스북 계정과 연계해제하기
+tnormal
+일반
+thard
+엘리트
+tlive
+스페셜
+tspecial
+스페셜
+btenter
+들어가기
+btshop1
+다이아몬드 구매하기
+btshop0
+코인 구매하기
+btshop2
+우정포인트 소환
+btshop3
+다이아몬드 소환
+btshop4
+스태미나 회복
+btstrength
+스태미나 회복
+btshop5
+배낭 확장하기
+btrequest
+요청하기
+btaccept
+받기
+btbuycoin
+1000 코인
+btadd
+추가
+bttomsg
+보상 받기
+btconfirm
+확인
+btdelete
+삭제
+btexit
+나가기
+btexpandbox
+박스 확장하기
+btlock
+잠그기
+btslock
+잠그기
+btsmail
+쪽지쓰기
+btno
+아니오
+btok
+예
+btsok
+예
+ppickup
+전리품
+btreject
+거절하기
+btretry
+재시도
+btslotone
+1명의 영웅 소환하기
+btslotten
+10명의 영웅 소환하기
+bttohbox
+영웅 상자로 가기
+btsunlock
+잠금해제
+btsdelete
+삭제
+btreply
+답장
+btcancel
+취소
+btuncom
+조각 분해하기
+btkeepdata
+데이터 저장
+btloaddata
+데이터 가져오기
+btrate
+별점 주러 가기
+btlater
+다음에 하기
+btmoregame
+다른 게임
+btmoregamex
+다른 게임
+btskip
+뛰어넘다
+btenterx
+일반 경기
+btgooglex
+구글 + 경기
+btinvite
+친구 초대
+btinvitation
+내 초대
+btsearch
+검색
+btfighting
+파이팅
+btexitbig
+싸움을 종료
+btchallenge
+도전
+btpvpladder
+래더
+btpvpreward
+보상
+btrevange
+복수
+btreplay
+재생
+btenhance
+강화
+btaddx1
+추가
+btaddx2
+추가
+btgototask
+이동
+btchance
+더 많은 기회
+btclaimx
+받기
+btnext
+다음 수준
+btclear
+레이드
+btchatworld
+세계
+btchatleague
+리그
+btchatprivate
+속삭임
+tthero
+영웅
+ttreward
+장려
+tteditteam
+팀 수정
+ttenhance
+강화
+tttask
+임무
+ttmenu
+메뉴
+ttmsg
+소식
+ttreward
+장려
+ttselectmaterial
+재료 고르기
+ttshop
+상점
+ttsellhero
+영웅 팔기
+tthero
+영웅
+ttfriend
+친구
+ttfragment
+조각 시스템
+ttevolve
+진화
+ttboss
+보스
+ttquest
+임무
+ttuncompose
+조각 분해하기
+ttfragment
+조각 시스템
+ttbattle
+배틀
+ttshop
+상점
+ttstore
+상점
+ttfriend
+친구
+ttmain
+쪽지쓰기
+ttcollection
+컬렉션

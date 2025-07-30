@@ -1,0 +1,250 @@
+
+texttitle_ko.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+title
+  rotate: false
+  xy: 1, 806
+  size: 312, 215
+  orig: 312, 215
+  offset: 0, 0
+  index: -1
+ttselect
+  rotate: false
+  xy: 1, 761
+  size: 480, 43
+  orig: 480, 43
+  offset: 0, 0
+  index: -1
+touchtostart
+  rotate: false
+  xy: 1, 720
+  size: 391, 39
+  orig: 391, 39
+  offset: 0, 0
+  index: -1
+mpt4
+  rotate: false
+  xy: 1, 654
+  size: 240, 64
+  orig: 333, 64
+  offset: 27, 0
+  index: -1
+mpt2
+  rotate: false
+  xy: 1, 586
+  size: 222, 66
+  orig: 294, 66
+  offset: 22, 0
+  index: -1
+mpt0
+  rotate: false
+  xy: 1, 517
+  size: 219, 67
+  orig: 268, 67
+  offset: 23, 0
+  index: -1
+mpt5
+  rotate: false
+  xy: 1, 432
+  size: 203, 83
+  orig: 277, 87
+  offset: 36, 2
+  index: -1
+mpt3
+  rotate: false
+  xy: 1, 365
+  size: 212, 65
+  orig: 247, 65
+  offset: 16, 0
+  index: -1
+mpt1
+  rotate: false
+  xy: 315, 954
+  size: 183, 67
+  orig: 232, 67
+  offset: 23, 0
+  index: -1
+btfbun
+  rotate: false
+  xy: 1, 329
+  size: 218, 34
+  orig: 314, 65
+  offset: 48, 21
+  index: -1
+exitgame
+  rotate: false
+  xy: 1, 290
+  size: 207, 37
+  orig: 207, 37
+  offset: 0, 0
+  index: -1
+btbgselect
+  rotate: false
+  xy: 315, 896
+  size: 175, 56
+  orig: 175, 56
+  offset: 0, 0
+  index: -1
+btgooglex
+  rotate: false
+  xy: 1, 254
+  size: 197, 34
+  orig: 314, 65
+  offset: 59, 21
+  index: -1
+btupgrade
+  rotate: false
+  xy: 315, 821
+  size: 156, 73
+  orig: 156, 73
+  offset: 0, 0
+  index: -1
+btfb
+  rotate: false
+  xy: 1, 218
+  size: 187, 34
+  orig: 314, 65
+  offset: 63, 21
+  index: -1
+btgoogle
+  rotate: false
+  xy: 1, 182
+  size: 166, 34
+  orig: 314, 65
+  offset: 74, 21
+  index: -1
+btevolve
+  rotate: false
+  xy: 243, 656
+  size: 132, 62
+  orig: 132, 62
+  offset: 0, 0
+  index: -1
+tap
+  rotate: false
+  xy: 1, 143
+  size: 149, 37
+  orig: 149, 37
+  offset: 0, 0
+  index: -1
+btlast
+  rotate: false
+  xy: 1, 108
+  size: 141, 33
+  orig: 314, 65
+  offset: 86, 21
+  index: -1
+btmoregame
+  rotate: false
+  xy: 1, 73
+  size: 123, 33
+  orig: 314, 65
+  offset: 96, 21
+  index: -1
+tloading
+  rotate: false
+  xy: 1, 36
+  size: 103, 35
+  orig: 103, 35
+  offset: 0, 0
+  index: -1
+bthelp
+  rotate: false
+  xy: 1, 1
+  size: 91, 33
+  orig: 314, 65
+  offset: 111, 21
+  index: -1
+btcollect
+  rotate: false
+  xy: 394, 726
+  size: 87, 33
+  orig: 314, 65
+  offset: 113, 21
+  index: -1
+textevo
+  rotate: false
+  xy: 243, 634
+  size: 96, 20
+  orig: 176, 46
+  offset: 40, 13
+  index: -1
+textnotevo
+  rotate: false
+  xy: 225, 612
+  size: 96, 20
+  orig: 176, 46
+  offset: 40, 13
+  index: -1
+textcompun
+  rotate: false
+  xy: 225, 594
+  size: 90, 16
+  orig: 90, 16
+  offset: 0, 0
+  index: -1
+textcomp
+  rotate: false
+  xy: 225, 576
+  size: 89, 16
+  orig: 90, 16
+  offset: 1, 0
+  index: -1
+btoptions
+  rotate: false
+  xy: 222, 541
+  size: 55, 33
+  orig: 314, 65
+  offset: 129, 21
+  index: -1
+textbattle
+  rotate: false
+  xy: 222, 506
+  size: 55, 33
+  orig: 120, 120
+  offset: 32, 43
+  index: -1
+btselectall
+  rotate: false
+  xy: 279, 531
+  size: 29, 43
+  orig: 71, 43
+  offset: 4, 0
+  index: -1
+xfriend2
+  rotate: false
+  xy: 394, 704
+  size: 62, 20
+  orig: 62, 20
+  offset: 0, 0
+  index: -1
+xfriend1
+  rotate: false
+  xy: 341, 634
+  size: 30, 20
+  orig: 30, 20
+  offset: 0, 0
+  index: -1
+textinteam
+  rotate: false
+  xy: 323, 617
+  size: 47, 15
+  orig: 90, 16
+  offset: 43, 0
+  index: -1
+textlock
+  rotate: false
+  xy: 279, 513
+  size: 33, 16
+  orig: 90, 16
+  offset: 57, 0
+  index: -1
+btclaim
+  rotate: false
+  xy: 458, 708
+  size: 27, 16
+  orig: 81, 36
+  offset: 28, 12
+  index: -1

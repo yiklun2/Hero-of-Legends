@@ -1,0 +1,19 @@
+
+tutorial.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guidebk
+  rotate: false
+  xy: 1, 267
+  size: 466, 153
+  orig: 466, 153
+  offset: 0, 0
+  index: -1
+guidegirl
+  rotate: false
+  xy: 1, 1
+  size: 253, 264
+  orig: 253, 264
+  offset: 0, 0
+  index: -1

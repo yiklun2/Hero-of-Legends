@@ -1,0 +1,61 @@
+
+fonts_ko.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ko_trajan18bold
+  rotate: false
+  xy: 0, 530
+  size: 512, 471
+  orig: 512, 471
+  offset: 0, 0
+  index: -1
+ko_pl18bold
+  rotate: false
+  xy: 512, 532
+  size: 512, 469
+  orig: 512, 469
+  offset: 0, 0
+  index: -1
+ko_pl14
+  rotate: false
+  xy: 512, 200
+  size: 512, 330
+  orig: 512, 330
+  offset: 0, 0
+  index: -1
+ko_trajan24bold
+  rotate: false
+  xy: 0, 182
+  size: 256, 346
+  orig: 256, 346
+  offset: 0, 0
+  index: -1
+ko_trajan14bold
+  rotate: false
+  xy: 256, 283
+  size: 256, 245
+  orig: 256, 245
+  offset: 0, 0
+  index: -1
+ko_trajan11
+  rotate: false
+  xy: 256, 100
+  size: 256, 181
+  orig: 256, 181
+  offset: 0, 0
+  index: -1
+ko_trajan32
+  rotate: false
+  xy: 0, 1
+  size: 256, 179
+  orig: 256, 179
+  offset: 0, 0
+  index: -1
+ko_trajan18boldb
+  rotate: false
+  xy: 512, 85
+  size: 256, 113
+  orig: 256, 113
+  offset: 0, 0
+  index: -1

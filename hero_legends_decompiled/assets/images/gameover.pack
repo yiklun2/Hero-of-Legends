@@ -1,0 +1,243 @@
+
+gameover.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bgbottom
+  rotate: false
+  xy: 1, 574
+  size: 480, 449
+  orig: 480, 449
+  offset: 0, 0
+  index: -1
+guidebk
+  rotate: false
+  xy: 1, 419
+  size: 466, 153
+  orig: 466, 153
+  offset: 0, 0
+  index: -1
+over_defeat
+  rotate: false
+  xy: 483, 810
+  size: 348, 213
+  orig: 348, 213
+  offset: 0, 0
+  index: -1
+over_victory_text
+  rotate: false
+  xy: 1, 204
+  size: 348, 213
+  orig: 348, 213
+  offset: 0, 0
+  index: -1
+ttlose
+  rotate: false
+  xy: 483, 595
+  size: 348, 213
+  orig: 348, 213
+  offset: 0, 0
+  index: -1
+bossbattle
+  rotate: false
+  xy: 1, 74
+  size: 424, 128
+  orig: 424, 128
+  offset: 0, 0
+  index: -1
+bossbattletext
+  rotate: false
+  xy: 483, 465
+  size: 424, 128
+  orig: 424, 128
+  offset: 0, 0
+  index: -1
+rslot
+  rotate: false
+  xy: 351, 210
+  size: 220, 207
+  orig: 220, 207
+  offset: 0, 0
+  index: -1
+rupdate
+  rotate: false
+  xy: 427, 1
+  size: 220, 207
+  orig: 220, 207
+  offset: 0, 0
+  index: -1
+bgrank
+  rotate: false
+  xy: 573, 273
+  size: 227, 190
+  orig: 227, 190
+  offset: 0, 0
+  index: -1
+over_victory3
+  rotate: false
+  xy: 802, 264
+  size: 200, 199
+  orig: 200, 199
+  offset: 0, 0
+  index: -1
+over_victory2
+  rotate: false
+  xy: 833, 938
+  size: 83, 85
+  orig: 83, 85
+  offset: 0, 0
+  index: -1
+star2
+  rotate: false
+  xy: 833, 861
+  size: 78, 75
+  orig: 78, 75
+  offset: 0, 0
+  index: -1
+star2x
+  rotate: false
+  xy: 918, 948
+  size: 78, 75
+  orig: 78, 75
+  offset: 0, 0
+  index: -1
+p11
+  rotate: false
+  xy: 1, 26
+  size: 102, 46
+  orig: 102, 46
+  offset: 0, 0
+  index: -1
+p12
+  rotate: false
+  xy: 573, 225
+  size: 95, 46
+  orig: 95, 46
+  offset: 0, 0
+  index: -1
+star1
+  rotate: false
+  xy: 833, 787
+  size: 69, 72
+  orig: 69, 72
+  offset: 0, 0
+  index: -1
+star1x
+  rotate: false
+  xy: 833, 713
+  size: 69, 72
+  orig: 69, 72
+  offset: 0, 0
+  index: -1
+star3
+  rotate: false
+  xy: 833, 639
+  size: 69, 72
+  orig: 69, 72
+  offset: 0, 0
+  index: -1
+p10
+  rotate: false
+  xy: 105, 26
+  size: 92, 46
+  orig: 92, 46
+  offset: 0, 0
+  index: -1
+star3x
+  rotate: false
+  xy: 670, 199
+  size: 69, 72
+  orig: 69, 72
+  offset: 0, 0
+  index: -1
+p4
+  rotate: false
+  xy: 199, 26
+  size: 37, 46
+  orig: 37, 46
+  offset: 0, 0
+  index: -1
+p2
+  rotate: false
+  xy: 741, 225
+  size: 35, 46
+  orig: 35, 46
+  offset: 0, 0
+  index: -1
+p6
+  rotate: false
+  xy: 238, 26
+  size: 35, 46
+  orig: 35, 46
+  offset: 0, 0
+  index: -1
+p0
+  rotate: false
+  xy: 275, 26
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+p7
+  rotate: false
+  xy: 311, 26
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+p8
+  rotate: false
+  xy: 347, 26
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+p9
+  rotate: false
+  xy: 383, 26
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+p3
+  rotate: false
+  xy: 649, 151
+  size: 32, 46
+  orig: 32, 46
+  offset: 0, 0
+  index: -1
+p5
+  rotate: false
+  xy: 649, 103
+  size: 31, 46
+  orig: 31, 46
+  offset: 0, 0
+  index: -1
+p1
+  rotate: false
+  xy: 683, 151
+  size: 28, 46
+  orig: 28, 46
+  offset: 0, 0
+  index: -1
+up1
+  rotate: false
+  xy: 998, 996
+  size: 15, 27
+  orig: 15, 27
+  offset: 0, 0
+  index: -1
+up0
+  rotate: false
+  xy: 1, 1
+  size: 7, 23
+  orig: 7, 23
+  offset: 0, 0
+  index: -1
+up2
+  rotate: false
+  xy: 10, 1
+  size: 7, 23
+  orig: 7, 23
+  offset: 0, 0
+  index: -1

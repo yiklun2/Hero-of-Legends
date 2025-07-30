@@ -1,0 +1,61 @@
+
+fonts_ja.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ja_pl18bold
+  rotate: false
+  xy: 0, 510
+  size: 512, 507
+  orig: 512, 507
+  offset: 0, 0
+  index: -1
+ja_trajan18bold
+  rotate: false
+  xy: 0, 1
+  size: 512, 507
+  orig: 512, 507
+  offset: 0, 0
+  index: -1
+ja_pl14
+  rotate: false
+  xy: 512, 617
+  size: 512, 400
+  orig: 512, 400
+  offset: 0, 0
+  index: -1
+ja_trajan24bold
+  rotate: false
+  xy: 512, 307
+  size: 256, 308
+  orig: 256, 308
+  offset: 0, 0
+  index: -1
+ja_trajan14bold
+  rotate: false
+  xy: 512, 79
+  size: 256, 226
+  orig: 256, 226
+  offset: 0, 0
+  index: -1
+ja_trajan32
+  rotate: false
+  xy: 768, 430
+  size: 256, 185
+  orig: 256, 185
+  offset: 0, 0
+  index: -1
+ja_trajan11
+  rotate: false
+  xy: 768, 264
+  size: 256, 164
+  orig: 256, 164
+  offset: 0, 0
+  index: -1
+ja_trajan18boldb
+  rotate: false
+  xy: 768, 133
+  size: 256, 129
+  orig: 256, 129
+  offset: 0, 0
+  index: -1

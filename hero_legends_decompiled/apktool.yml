@@ -1,0 +1,34 @@
+!!brut.androlib.apk.ApkInfo
+apkFileName: Hero of Legends_2.0.apk
+doNotCompress:
+- resources.arsc
+- png
+- jpg
+- ogg
+isFrameworkApk: false
+packageInfo:
+  forcedPackageId: '127'
+  renameManifestPackage: null
+resourcesAreCompressed: false
+sdkInfo:
+  minSdkVersion: '7'
+  targetSdkVersion: '14'
+sharedLibrary: false
+sparseResources: true
+unknownFiles:
+  com/badlogic/gdx/utils/arial-15.png: '8'
+  com/badlogic/gdx/utils/arial-15.fnt: '8'
+  com/badlogic/gdx/utils/JsonReader.rl: '8'
+  com/badlogic/gdx/utils/XmlReader.rl: '8'
+  com/tapjoy/res/tj_close_button.png: '8'
+  com/turbomanage/httpclient/License: '8'
+  js/closebutton.html: '8'
+  js/mraid.js: '8'
+usesFramework:
+  ids:
+  - 1
+  tag: null
+version: 2.8.1
+versionInfo:
+  versionCode: '11'
+  versionName: '2.0'
