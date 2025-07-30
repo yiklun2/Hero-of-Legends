@@ -361,31 +361,36 @@
     .prologue
     .line 891
     :try_start_0
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->dialog_stage:Lcom/puddingstudio/cardgame/engine/DialogStage;
+    # ULTIMATE PATCH: 完全跳过LoginScene，直接初始化MainScene
+    const-string v7, "kickOff() 被拦截，强制初始化MainScene并跳过所有登录流程"
+    invoke-static {v7}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
 
+    # 清除对话框
+    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->dialog_stage:Lcom/puddingstudio/cardgame/engine/DialogStage;
     invoke-virtual {v0}, Lcom/puddingstudio/cardgame/engine/DialogStage;->clearDialogs()V
 
-    .line 892
-    const/4 v1, 0x0
-
-    const/4 v2, 0x0
-
-    const/16 v3, 0x191
-
-    const-wide/16 v4, -0x1
-
-    const/4 v6, 0x0
-
-    move-object v0, p0
-
-    invoke-virtual/range {v0 .. v6}, Lcom/puddingstudio/cardgame/CardGame;->gotoScene(ILjava/lang/Object;IJLjava/lang/Object;)V
-
-    .line 893
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->login_scene:Lcom/puddingstudio/cardgame/scene/LoginScene;
-
-    const/16 v1, 0x191
-
-    invoke-virtual {v0, v1}, Lcom/puddingstudio/cardgame/scene/LoginScene;->kickOff(I)V
+    # 强制初始化离线玩家数据
+    invoke-static {}, Lcom/puddingstudio/cardgame/data/ItemManager;->getInstance()Lcom/puddingstudio/cardgame/data/ItemManager;
+    move-result-object v0
+    invoke-virtual {v0}, Lcom/puddingstudio/cardgame/data/ItemManager;->initOfflinePlayer()V
+    
+    # 确保main_scene已初始化
+    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
+    if-nez v0, :main_scene_ready
+    # 创建MainScene
+    new-instance v0, Lcom/puddingstudio/cardgame/scene/MainScene;
+    invoke-direct {v0, p0}, Lcom/puddingstudio/cardgame/scene/MainScene;-><init>(Lcom/puddingstudio/cardgame/CardGame;)V
+    iput-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
+    const-string v7, "kickOff() 中创建了MainScene"
+    invoke-static {v7}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    :main_scene_ready
+    # 直接设置current_scene为main_scene，跳过gotoScene(0)调用
+    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
+    iput-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->current_scene:Lcom/puddingstudio/cardgame/engine/Scene;
+    
+    const-string v7, "kickOff() 强制设置MainScene为当前场景"
+    invoke-static {v7}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
@@ -399,6 +404,8 @@
 
     .line 896
     .local v7, "e":Ljava/lang/Exception;
+    const-string v0, "kickOff() 异常，但已强制设置MainScene"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
     invoke-virtual {v7}, Ljava/lang/Exception;->printStackTrace()V
 
     goto :goto_0
@@ -2356,7 +2363,7 @@
     :cond_5
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->slot_scene:Lcom/puddingstudio/cardgame/scene/SlotScene;
 
-    goto/16 :goto_0
+    goto :goto_0
 
     .line 420
     :pswitch_6
@@ -2384,7 +2391,7 @@
     :cond_6
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->pvp_scene:Lcom/puddingstudio/cardgame/scene/PVPGameScene;
 
-    goto/16 :goto_0
+    goto :goto_0
 
     .line 375
     nop
