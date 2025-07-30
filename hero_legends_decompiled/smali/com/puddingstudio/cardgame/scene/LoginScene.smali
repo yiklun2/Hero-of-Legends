@@ -483,6 +483,29 @@
     .param p1, "visible"    # Z
 
     .prologue
+    # ULTIMATE PATCH: 强制隐藏所有进度条，立即返回
+    const-string v0, "showLoadingBarVisible() 被拦截，强制隐藏"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    # 强制设置所有相关元素为不可见
+    :try_start_0
+    iget-object v0, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->loading:Lcom/puddingstudio/cardgame/engine/actor/ProgressBar;
+    if-eqz v0, :skip_loading
+    const/4 v1, 0x0
+    iput-boolean v1, v0, Lcom/puddingstudio/cardgame/engine/actor/ProgressBar;->visible:Z
+    :skip_loading
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    goto :final_return
+    
+    :catch_0
+    const-string v0, "隐藏进度条异常"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    :final_return
+    return-void
+    
+    # 保留原有变量定义但代码已被跳过
     const/high16 v7, 0x3f000000    # 0.5f
 
     const/4 v1, 0x1
@@ -3025,6 +3048,12 @@
     .param p1, "sprite_batch"    # Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;
 
     .prologue
+    # ULTIMATE PATCH: 完全禁用LoginScene渲染，防止进度条显示
+    const-string v0, "LoginScene.render() 被禁用"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    return-void
+    
+    # 保留原有代码结构但已被跳过
     .line 1024
     invoke-super {p0, p1}, Lcom/puddingstudio/cardgame/engine/Scene;->render(Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;)V
 

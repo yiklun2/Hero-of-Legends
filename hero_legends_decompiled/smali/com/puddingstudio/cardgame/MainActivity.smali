@@ -3020,6 +3020,25 @@
 
     .line 107
     invoke-super {p0, p1}, Lcom/puddingstudio/cardgame/DoodleGame;->onCreate(Landroid/os/Bundle;)V
+    
+    # ULTIMATE PATCH: 在Activity创建时就强制初始化离线模式
+    :try_start_force_offline_mode
+    const-string v0, "MainActivity.onCreate() 强制初始化离线模式"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    # 确保ItemManager已初始化离线玩家数据
+    invoke-static {}, Lcom/puddingstudio/cardgame/data/ItemManager;->getInstance()Lcom/puddingstudio/cardgame/data/ItemManager;
+    move-result-object v1
+    invoke-virtual {v1}, Lcom/puddingstudio/cardgame/data/ItemManager;->initOfflinePlayer()V
+    :try_end_force_offline_mode
+    .catch Ljava/lang/Exception; {:try_start_force_offline_mode .. :try_end_force_offline_mode} :catch_force_offline_exception
+    goto :continue_original_onCreate
+    
+    :catch_force_offline_exception
+    const-string v0, "onCreate强制离线模式时发生异常，但不影响继续"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    :continue_original_onCreate
 
     .line 110
     :try_start_0
