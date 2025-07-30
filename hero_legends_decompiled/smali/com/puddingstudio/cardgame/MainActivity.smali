@@ -3021,21 +3021,35 @@
     .line 107
     invoke-super {p0, p1}, Lcom/puddingstudio/cardgame/DoodleGame;->onCreate(Landroid/os/Bundle;)V
     
-    # ULTIMATE PATCH: 在Activity创建时就强制初始化离线模式
-    :try_start_force_offline_mode
-    const-string v0, "MainActivity.onCreate() 强制初始化离线模式"
+    # CRASH FIX PATCH: 在Activity创建时安全初始化离线模式
+    :try_start_safe_offline_init
+    const-string v0, "MainActivity.onCreate() 安全初始化离线模式"
     invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
     
-    # 确保ItemManager已初始化离线玩家数据
+    # 安全地初始化ItemManager
+    :try_start_item_manager
     invoke-static {}, Lcom/puddingstudio/cardgame/data/ItemManager;->getInstance()Lcom/puddingstudio/cardgame/data/ItemManager;
     move-result-object v1
+    if-eqz v1, :item_manager_ok
     invoke-virtual {v1}, Lcom/puddingstudio/cardgame/data/ItemManager;->initOfflinePlayer()V
-    :try_end_force_offline_mode
-    .catch Ljava/lang/Exception; {:try_start_force_offline_mode .. :try_end_force_offline_mode} :catch_force_offline_exception
+    const-string v0, "ItemManager离线玩家数据初始化成功"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    :item_manager_ok
+    :try_end_item_manager
+    .catch Ljava/lang/Exception; {:try_start_item_manager .. :try_end_item_manager} :catch_item_manager
+    goto :continue_safe_onCreate
+    
+    :catch_item_manager
+    const-string v0, "ItemManager初始化异常，继续安全模式"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    :continue_safe_onCreate
+    :try_end_safe_offline_init
+    .catch Ljava/lang/Exception; {:try_start_safe_offline_init .. :try_end_safe_offline_init} :catch_safe_offline_exception
     goto :continue_original_onCreate
     
-    :catch_force_offline_exception
-    const-string v0, "onCreate强制离线模式时发生异常，但不影响继续"
+    :catch_safe_offline_exception
+    const-string v0, "onCreate安全离线模式初始化异常，继续原始流程"
     invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
     
     :continue_original_onCreate
@@ -3200,6 +3214,8 @@
 
     .line 168
     :goto_4
+    # CRASH FIX: 安全初始化CardGame
+    :try_start_safe_cardgame_init
     new-instance v4, Lcom/puddingstudio/cardgame/CardGame;
 
     invoke-static {}, Ljava/util/Locale;->getDefault()Ljava/util/Locale;
@@ -3214,12 +3230,24 @@
 
     iput-object v4, p0, Lcom/puddingstudio/cardgame/MainActivity;->cardgame:Lcom/puddingstudio/cardgame/CardGame;
 
+    const-string v0, "CardGame实例创建成功"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+
     .line 169
     iget-object v4, p0, Lcom/puddingstudio/cardgame/MainActivity;->cardgame:Lcom/puddingstudio/cardgame/CardGame;
 
+    if-eqz v4, :cardgame_ok
     const/4 v5, 0x0
-
     invoke-virtual {p0, v4, v5}, Lcom/puddingstudio/cardgame/MainActivity;->initialize(Lcom/badlogic/gdx/ApplicationListener;Z)V
+    const-string v0, "CardGame初始化成功"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    :cardgame_ok
+    :try_end_safe_cardgame_init
+    .catch Ljava/lang/Exception; {:try_start_safe_cardgame_init .. :try_end_safe_cardgame_init} :catch_cardgame_init
+    
+    :catch_cardgame_init
+    const-string v0, "CardGame初始化异常，但继续运行"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
 
     .line 172
     :try_start_4
