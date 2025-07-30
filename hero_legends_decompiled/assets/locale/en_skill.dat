@@ -1,0 +1,120 @@
+Thump
+Do great melee damage to 1 random enemy in front row. 
+Assassinate
+Do great melee damage to 1 random enemy. 
+Frost Ball  
+Do frost damage to 1 random enmy and chance to put back the target on the turn bar.
+Fire Ball
+Do fire damage and chance to burn the target.
+Heal
+Heal the friendly unit with lowest health heavily.
+Double Shot
+Do great ranged damage to 2 random enemies. 
+Arrow Rain
+Do great melee damage to enemies in back row. 
+Cleave
+Do great melee damage to enemies in front row. 
+Fire Rain
+Do great fire damage to enemies in front row. 
+Frost Breath
+Do great frost damage to all enemies. 
+Frost Arrows
+Do great frost damage to 3 random enemies. 
+Cure
+Heal 3 friendly units with lowest health moderately.
+Fire Breath
+Do great fire damage to all enemies. 
+Song of Life
+Heal all friendly units slightly.
+Poison Blade
+Do damage and chance to poison the target.
+Iron Wall
+Raise defense for 2 rounds.
+Guard Break
+Reduce the target's defense for 2 rounds.
+Life Drain
+Do great damage and refresh HP by 80% of the damage amount.
+Menace
+Do damage and chance to reduce the target's speed.
+Rage Blood
+Raise critical hit rate for 2 rounds.
+Fire Strike
+Do fire damage to enemies in a column and chance to burn them.
+Frost Strike
+Do frost damage to enemies in a column and chance to put back them on the turn bar.
+Lucky Leap
+Raise speed and chance to jump forward on the turn bar.
+Polymorph
+Turn the enermy into sheep
+Evasion
+Raise self-evasion rate for 2 rounds.
+Flare
+Do damage and chance to reduce the target's attack.
+Intimidation
+Do damage and chance to reduce the target's defense.
+Quick Heal
+Heal the friendly unit with lowest health excessively.
+Quick Cure
+Heal 3 friendly units unit with lowest health heavily.
+Light of Life
+Heal all friendly units moderately.
+Blood Surge
+Raise attack for 2 rounds.
+Speed Boost
+Raise speed for 2 rounds.
+Blade Broken
+Reduce the target's attack for 2 rounds.
+Degeneration
+Reduce the target's speed for 2 rounds.
+Vitality Power 
+HP raised.
+Attack Power
+ATTACK raised.
+Speed-up Power
+SPEED raised.
+Defense Power
+DEFENSE raised.
+Dodge Power
+EVASION raised.
+Critical Hit Power
+CRITICAL HIT RATE raised.
+Healing Power
+HEAL raised.
+Regenerate Power
+Regenerated a littlle HP every round.
+Life on Hit
+While HP is above 20%, a fatal hit will leave the hero with 1 HP.
+Bounce Power
+20% chance of countering with a attack of 200% of damage taken.
+Survive Power
+While HP is under 30%, ATTACK is raised by 20%.
+Immune Power
+Immune to all debuffs.
+Super Bounce Power
+50% chance of countering with a attack of 400% of damage taken.
+General Vitality Up
+Raise all friendly units' HP.
+General Damage Up
+Raise all friendly units' ATTACK.
+General Speed Up
+Raise all friendly units' SPEED.
+General Defense Enhancing
+Raise all friendly units' DEFENSE.
+General Evasion Increasing
+Raise all friendly units' EVASION.
+General Critical Hit Increase
+Raise all friendly units' CRITICAL HIT RATE.
+Warrior Vigour
+Raise Warriors' HP.
+Warrior Armour
+Raise Warriors' DEFENSE.
+Mage Boosting
+Raise Mages' ATTACK.
+Ranger Speeder
+Raise Rangers' SPEED.
+Critical Striker
+Raise Rangers' CRITICAL HIT RATE.
+Quick Dodger
+Raise Rangers' EVASION.
+Healing Supply
+Raise Priests' HEAL.

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:gravity="center" android:layout_width="305.0dip" android:layout_height="231.0dip">
+        <ImageView android:background="@drawable/rewardbg" android:layout_width="305.0dip" android:layout_height="231.0dip" android:layout_marginLeft="10.0dip" />
+        <Button android:id="@id/dialog_edit_msg_button_no" android:background="@drawable/dialog_namecancel" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_marginLeft="270.0dip" android:layout_marginTop="5.0dip" />
+        <TextView android:textColor="#fffaf399" android:id="@id/dialog_edit_msg_dialog_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:text="@string/dialog_edit_message_title" android:layout_centerHorizontal="true" />
+        <TextView android:gravity="left" android:id="@id/dialog_edit_msg_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_marginTop="40.0dip" android:text="@string/dialog_edit_message_content" />
+        <EditText android:textColor="#ffffffff" android:gravity="left" android:id="@id/dialog_edit_msg_edit_text" android:background="@drawable/dialog_nameinputbk" android:layout_width="240.0dip" android:layout_height="100.0dip" android:layout_marginLeft="40.0dip" android:layout_marginTop="70.0dip" android:minEms="12" android:singleLine="false" android:maxLength="100" android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!`\n?'.,;:()[]{}| /@$-%+=#_~*\u007f1234567890qwertyuiopasdfghjklzxcvbnm`-=[],./~!@#$%^*()_+}{:?&amp;&lt;>&quot;'" />
+        <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="175.0dip">
+            <Button android:id="@id/dialog_edit_msg_button_yes" android:background="@drawable/dialog_nameyes" android:layout_width="79.0dip" android:layout_height="36.0dip" android:layout_marginLeft="130.0dip" />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

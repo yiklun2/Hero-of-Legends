@@ -1,0 +1,200 @@
+[
+  {
+    "storyid": 1000,
+    "stepnext": 1,
+    "bg": "intro1.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": 0,
+    "text": "The mysterious Land of Westero has been a cradle of countless lives, witnessing the rise and fall of different civiliazations throughtout history. Life of an peaceful era has gone by,the land was awaken by spooky hoofs from Inferno... "
+  },
+  {
+    "storyid": 1001,
+    "stepnext": 2,
+    "bg": "intro2.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "Devils lock their eyes on the exuberant, magical power encompassing the land of Westero, a grim agression is about to wage. Beasts in the forest are polluted in a frenzy while bewitched peoples can't stop warring for being sowed discord, not even the Saints and the Deads can escape that control.Well, the most horrible rumor has it that the Angels, who are empowered to master life and death, have become their servants.    "
+  },
+  {
+    "storyid": 1002,
+    "stepnext": 3,
+    "bg": "intro2.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "People rise up and resist the brutal invation rather than sitting still.The bravest warriors among them pledge to fight and eradicate all the evil power and bring peace back to the world. And you, will be the writer of their legend."
+  },
+  {
+    "storyid": 1003,
+    "stepnext": -1,
+    "bg": "1.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "That was a quiet villiage in deep forest where human beings got along well with the beasts. Until one day, the beasts suddenly became freaken out and started attacking mankind."
+  },
+  {
+    "storyid": 1001000,
+    "stepnext": -1,
+    "bg": "2.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "The cruel Devils had pieced human and beasts together to make fierce monsters, who had totally lost their minds! They walked upstraight while their sharp teeth could crunch your bone... Warriors must find ways to defeat them to protect the villiages!"
+  },
+  {
+    "storyid": 2001000,
+    "stepnext": -1,
+    "bg": "3.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "One the way warriors getting out of the Verdant Mountain, they were almost robbed by those greedy Ogres!  "
+  },
+  {
+    "storyid": 3001000,
+    "stepnext": -1,
+    "bg": "4.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "Seize the rebels! It was not an aid from the church, warriors just realized that Father Priest and the Great Knights had already been possessed by Devils... "
+  },
+  {
+    "storyid": 4001000,
+    "stepnext": -1,
+    "bg": "5.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "In a sombre mood, the human worriors lost in the moorland, looking for a possible way out. Suddenly they heard some strange footsteps chasing after... Hundreds of bloodthirsty monster were gasping with desire of gluttony."
+  },
+  {
+    "storyid": 5001000,
+    "stepnext": -1,
+    "bg": "6.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "\"Re..Reborn... \" A creepy growl were echoing around the cemetery, worrior just couldn't believe what they saw! A crowd of skeleton were approaching slowly with swords and shields in their hands."
+  },
+  {
+    "storyid": 6001000,
+    "stepnext": -1,
+    "bg": "7.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "No time for taking a break, worriors encountered a new challenge. The gloomy swamp were dominated by the witches who had created the Drenched Fiends.Once people stepped on the swamp, those creepy green creatures would drag them down and never let go...  "
+  },
+  {
+    "storyid": 7001000,
+    "stepnext": -1,
+    "bg": "8.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "Pharaohs and mummies were hunting for new servants! King of the Dune Sea was revived by the Devil,who can even rise above a powerful Pharaoh! No turning back, worriors vowed to conquer the quicksand."
+  },
+  {
+    "storyid": 8001000,
+    "stepnext": -1,
+    "bg": "9.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "Queen of the Frostfell would kill every outsider who attempt to step on her precious snowfield. She was such a tough and callous woman with magice power to freeze anything she touch.Is worriors' armour strong enough to defense?  "
+  },
+  {
+    "storyid": 9001000,
+    "stepnext": -1,
+    "bg": "10.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "Chasing after the remains of evil spirit, worriors were taken to a twilit grotto while they  were trapped in a dilema at the same time. Nobody could see the hidden circumstances under the grotto, they couldn't even run away...  "
+  },
+  {
+    "storyid": 10001000,
+    "stepnext": -1,
+    "bg": "11.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "They are NOT just Pirates!The cruel dominator of these eerie waters traded their souls to the Devil for a controlling force towards evil creatures.Warriors would  fight against these puppets, well, who might see themselves as masters."
+  },
+  {
+    "storyid": 11001000,
+    "stepnext": -1,
+    "bg": "12.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "It was a magical rainforest where the Mages lived and practiced magic for generations.Fortunately, they were pure from evil spirit. And unfortunately, they were unwilling to fight the Devils. Mages prided themselves on being guardians of Rainforest and never let people get through.Warriors had no choice but BREAK IN!"
+  },
+  {
+    "storyid": 12001000,
+    "stepnext": -1,
+    "bg": "13.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "A mysterious force was enshrined in the ancient temple, where lots of guards and loosters stayed around and kept eyeing up. All warriors can do is to defeat them and get the force!"
+  },
+  {
+    "storyid": 13001000,
+    "stepnext": -1,
+    "bg": "14.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "Who are these fire giants! Warriors came to the Vunlcanus Shrine, where lived the ancient Vunlcans who had made friend with Devils. The scorching wave of heat could almost devour everything! "
+  },
+  {
+    "storyid": 14001000,
+    "stepnext": -1,
+    "bg": "15.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "Dark Lords used to be mankind but lived for seeking immortality. They traded their live-long loyalty to serve Devils for eternal life.Their bodies were straight and rigid with invulnerability. Only the smell of blood could cheer them up...    "
+  },
+  {
+    "storyid": 15001000,
+    "stepnext": -1,
+    "bg": "16.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "With exhaused bodies and soul, warriors finally get there! The Inferno, where thounds of powerful evil creatures gathered, it's not gonna be a easy journey. Listen, can you hear the bark of Orthrus, miserable sobs from poo souls and roar of evil dragons? "
+  },
+  {
+    "storyid": 16001000,
+    "stepnext": -1,
+    "bg": "17.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "Master of Devils fell down! But would it be the end of the story? Cheering of triumph was stopped by the unexpected Heaven Army. Why would the Angels come and interfere? Warriors would find the answer in heaven."
+  },
+  {
+    "storyid": 16099100,
+    "stepnext": 1,
+    "bg": "outro1.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "Warriors returned home with triumph. After the long  expedition, they had grown into people  full of  determined courage and calmness, too, with humanitarian kindness blent."
+  },
+  {
+    "storyid": 16099101,
+    "stepnext": -1,
+    "bg": "outro2.png",
+    "roleid": -1,
+    "rolepos": -1,
+    "rolecard": -1,
+    "text": "It seemd that the Westero was reclaiming its long-lost tranquility, but no matter it's bright or dark, everything faded so fast. May successors keep the brave heart beating?"
+  }
+]

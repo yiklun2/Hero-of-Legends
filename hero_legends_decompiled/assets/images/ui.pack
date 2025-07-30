@@ -1,0 +1,1233 @@
+
+ui.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bgconfirm
+  rotate: false
+  xy: 1, 907
+  size: 483, 116
+  orig: 483, 116
+  offset: 0, 0
+  index: -1
+batbg
+  rotate: false
+  xy: 1, 855
+  size: 480, 50
+  orig: 480, 50
+  offset: 0, 0
+  index: -1
+bkevolve
+  rotate: false
+  xy: 486, 946
+  size: 435, 77
+  orig: 435, 77
+  offset: 0, 0
+  index: -1
+bkfriend
+  rotate: false
+  xy: 1, 776
+  size: 435, 77
+  orig: 435, 77
+  offset: 0, 0
+  index: -1
+bkhero
+  rotate: false
+  xy: 1, 697
+  size: 435, 77
+  orig: 435, 77
+  offset: 0, 0
+  index: -1
+bkicon
+  rotate: false
+  xy: 1, 618
+  size: 435, 77
+  orig: 435, 77
+  offset: 0, 0
+  index: -1
+bkmap
+  rotate: false
+  xy: 1, 539
+  size: 435, 77
+  orig: 435, 77
+  offset: 0, 0
+  index: -1
+bksetting
+  rotate: false
+  xy: 1, 460
+  size: 435, 77
+  orig: 435, 77
+  offset: 0, 0
+  index: -1
+upgrainfo
+  rotate: false
+  xy: 1, 258
+  size: 258, 200
+  orig: 258, 200
+  offset: 0, 0
+  index: -1
+bgbattle
+  rotate: false
+  xy: 486, 923
+  size: 480, 21
+  orig: 480, 21
+  offset: 0, 0
+  index: -1
+mainselect
+  rotate: false
+  xy: 1, 35
+  size: 175, 221
+  orig: 192, 240
+  offset: 9, 0
+  index: -1
+scrollbg
+  rotate: false
+  xy: 438, 492
+  size: 12, 361
+  orig: 12, 361
+  offset: 0, 0
+  index: -1
+btbgl
+  rotate: false
+  xy: 486, 856
+  size: 314, 65
+  orig: 314, 65
+  offset: 0, 0
+  index: -1
+scrollbk
+  rotate: false
+  xy: 452, 546
+  size: 6, 307
+  orig: 6, 307
+  offset: 0, 0
+  index: -1
+bgitemshop
+  rotate: false
+  xy: 261, 334
+  size: 212, 124
+  orig: 212, 124
+  offset: 0, 0
+  index: -1
+btbgb
+  rotate: false
+  xy: 261, 263
+  size: 212, 69
+  orig: 212, 69
+  offset: 0, 0
+  index: -1
+lockbk
+  rotate: false
+  xy: 483, 786
+  size: 243, 68
+  orig: 243, 68
+  offset: 0, 0
+  index: -1
+evoinfo
+  rotate: false
+  xy: 460, 659
+  size: 172, 125
+  orig: 172, 125
+  offset: 0, 0
+  index: -1
+btbgb2
+  rotate: false
+  xy: 460, 588
+  size: 212, 69
+  orig: 212, 69
+  offset: 0, 0
+  index: -1
+mainlock2
+  rotate: false
+  xy: 460, 517
+  size: 211, 69
+  orig: 212, 69
+  offset: 0, 0
+  index: -1
+btbgls
+  rotate: false
+  xy: 802, 870
+  size: 197, 51
+  orig: 197, 51
+  offset: 0, 0
+  index: -1
+btbtcir
+  rotate: false
+  xy: 634, 664
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+lvbg2
+  rotate: false
+  xy: 452, 496
+  size: 198, 19
+  orig: 198, 19
+  offset: 0, 0
+  index: -1
+lvbg
+  rotate: false
+  xy: 1, 6
+  size: 188, 27
+  orig: 188, 27
+  offset: 0, 0
+  index: -1
+guidearrow
+  rotate: false
+  xy: 178, 142
+  size: 110, 114
+  orig: 110, 114
+  offset: 0, 0
+  index: -1
+mainlock
+  rotate: false
+  xy: 290, 185
+  size: 147, 76
+  orig: 147, 76
+  offset: 0, 0
+  index: -1
+btmsgbg
+  rotate: false
+  xy: 178, 38
+  size: 101, 102
+  orig: 101, 102
+  offset: 0, 0
+  index: -1
+lvstr
+  rotate: false
+  xy: 802, 858
+  size: 180, 10
+  orig: 180, 10
+  offset: 0, 0
+  index: -1
+btmmain
+  rotate: false
+  xy: 923, 946
+  size: 67, 77
+  orig: 70, 77
+  offset: 2, 0
+  index: -1
+btbgsbb
+  rotate: false
+  xy: 290, 137
+  size: 148, 46
+  orig: 148, 46
+  offset: 0, 0
+  index: -1
+btbg
+  rotate: false
+  xy: 281, 66
+  size: 140, 69
+  orig: 140, 69
+  offset: 0, 0
+  index: -1
+textevobg
+  rotate: false
+  xy: 475, 448
+  size: 176, 46
+  orig: 176, 46
+  offset: 0, 0
+  index: -1
+btbigy
+  rotate: false
+  xy: 475, 377
+  size: 140, 69
+  orig: 140, 69
+  offset: 0, 0
+  index: -1
+trajan60
+  rotate: false
+  xy: 475, 295
+  size: 124, 80
+  orig: 128, 84
+  offset: 0, 4
+  index: -1
+lvlev
+  rotate: false
+  xy: 802, 847
+  size: 180, 9
+  orig: 180, 9
+  offset: 0, 0
+  index: -1
+bgname
+  rotate: false
+  xy: 281, 37
+  size: 164, 27
+  orig: 164, 27
+  offset: 0, 0
+  index: -1
+bgselect
+  rotate: false
+  xy: 728, 786
+  size: 69, 68
+  orig: 69, 68
+  offset: 0, 0
+  index: -1
+bgid
+  rotate: false
+  xy: 799, 828
+  size: 164, 17
+  orig: 164, 17
+  offset: 0, 0
+  index: -1
+bgsearch
+  rotate: false
+  xy: 799, 809
+  size: 146, 17
+  orig: 146, 17
+  offset: 0, 0
+  index: -1
+pbb
+  rotate: false
+  xy: 475, 263
+  size: 120, 30
+  orig: 120, 30
+  offset: 0, 0
+  index: -1
+btbgr
+  rotate: false
+  xy: 439, 213
+  size: 117, 48
+  orig: 117, 48
+  offset: 0, 0
+  index: -1
+btbglive
+  rotate: false
+  xy: 440, 134
+  size: 111, 77
+  orig: 111, 77
+  offset: 0, 0
+  index: -1
+btbgsb
+  rotate: false
+  xy: 423, 84
+  size: 117, 48
+  orig: 117, 48
+  offset: 0, 0
+  index: -1
+sortlevel
+  rotate: false
+  xy: 674, 590
+  size: 83, 72
+  orig: 83, 72
+  offset: 0, 0
+  index: -1
+btsearch
+  rotate: false
+  xy: 799, 793
+  size: 126, 14
+  orig: 126, 14
+  offset: 0, 0
+  index: -1
+paa
+  rotate: false
+  xy: 799, 754
+  size: 119, 37
+  orig: 119, 37
+  offset: 0, 0
+  index: -1
+btaddx1
+  rotate: false
+  xy: 447, 17
+  size: 89, 65
+  orig: 89, 65
+  offset: 0, 0
+  index: -1
+btbgsell
+  rotate: false
+  xy: 447, 17
+  size: 89, 65
+  orig: 89, 65
+  offset: 0, 0
+  index: -1
+sorttime
+  rotate: false
+  xy: 756, 680
+  size: 83, 72
+  orig: 83, 72
+  offset: 0, 0
+  index: -1
+sortstar
+  rotate: false
+  xy: 841, 680
+  size: 82, 72
+  orig: 83, 72
+  offset: 1, 0
+  index: -1
+sorttype
+  rotate: false
+  xy: 759, 606
+  size: 83, 72
+  orig: 83, 72
+  offset: 0, 0
+  index: -1
+itembk
+  rotate: false
+  xy: 844, 605
+  size: 73, 73
+  orig: 73, 73
+  offset: 0, 0
+  index: -1
+btbgpvp
+  rotate: false
+  xy: 191, 2
+  size: 82, 34
+  orig: 82, 34
+  offset: 0, 0
+  index: -1
+adfree
+  rotate: false
+  xy: 275, 1
+  size: 71, 34
+  orig: 71, 34
+  offset: 0, 0
+  index: -1
+slevel
+  rotate: false
+  xy: 348, 1
+  size: 48, 34
+  orig: 48, 34
+  offset: 0, 0
+  index: -1
+btmfriend
+  rotate: false
+  xy: 617, 372
+  size: 60, 74
+  orig: 70, 77
+  offset: 5, 1
+  index: -1
+btmmap
+  rotate: false
+  xy: 601, 296
+  size: 68, 74
+  orig: 70, 77
+  offset: 1, 1
+  index: -1
+btrefresh
+  rotate: false
+  xy: 398, 1
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+btclaimed
+  rotate: false
+  xy: 759, 542
+  size: 83, 62
+  orig: 83, 62
+  offset: 0, 0
+  index: -1
+btaddx2
+  rotate: false
+  xy: 844, 538
+  size: 89, 65
+  orig: 89, 65
+  offset: 0, 0
+  index: -1
+bgnum
+  rotate: false
+  xy: 992, 992
+  size: 31, 31
+  orig: 31, 31
+  offset: 0, 0
+  index: -1
+c4
+  rotate: false
+  xy: 965, 786
+  size: 58, 59
+  orig: 63, 62
+  offset: 3, 1
+  index: -1
+arrevolve
+  rotate: false
+  xy: 558, 211
+  size: 76, 50
+  orig: 76, 50
+  offset: 0, 0
+  index: -1
+btmshop
+  rotate: false
+  xy: 553, 137
+  size: 70, 72
+  orig: 70, 77
+  offset: 0, 2
+  index: -1
+btclaimbg
+  rotate: false
+  xy: 674, 552
+  size: 81, 36
+  orig: 81, 36
+  offset: 0, 0
+  index: -1
+pvp2
+  rotate: false
+  xy: 673, 514
+  size: 72, 36
+  orig: 72, 36
+  offset: 0, 0
+  index: -1
+btspdupauto
+  rotate: false
+  xy: 747, 502
+  size: 93, 38
+  orig: 93, 38
+  offset: 0, 0
+  index: -1
+btbgs
+  rotate: false
+  xy: 842, 489
+  size: 89, 47
+  orig: 89, 47
+  offset: 0, 0
+  index: -1
+btbks
+  rotate: false
+  xy: 653, 472
+  size: 89, 40
+  orig: 89, 40
+  offset: 0, 0
+  index: -1
+rcoin
+  rotate: false
+  xy: 679, 401
+  size: 66, 69
+  orig: 66, 69
+  offset: 0, 0
+  index: -1
+bgloginicon
+  rotate: false
+  xy: 747, 434
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+upbg
+  rotate: false
+  xy: 815, 460
+  size: 107, 27
+  orig: 107, 27
+  offset: 0, 0
+  index: -1
+btconfirm
+  rotate: false
+  xy: 747, 367
+  size: 66, 65
+  orig: 66, 65
+  offset: 0, 0
+  index: -1
+btmbattle
+  rotate: false
+  xy: 815, 390
+  size: 62, 68
+  orig: 70, 77
+  offset: 4, 4
+  index: -1
+pbat
+  rotate: false
+  xy: 879, 396
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+gicondiamond
+  rotate: false
+  xy: 653, 448
+  size: 24, 22
+  orig: 24, 22
+  offset: 0, 0
+  index: -1
+c5
+  rotate: false
+  xy: 679, 342
+  size: 63, 57
+  orig: 63, 62
+  offset: 0, 2
+  index: -1
+d4
+  rotate: false
+  xy: 671, 281
+  size: 63, 59
+  orig: 63, 62
+  offset: 0, 1
+  index: -1
+pvp3
+  rotate: false
+  xy: 744, 329
+  size: 70, 36
+  orig: 70, 36
+  offset: 0, 0
+  index: -1
+d5
+  rotate: false
+  xy: 736, 268
+  size: 63, 59
+  orig: 63, 62
+  offset: 0, 1
+  index: -1
+pbro
+  rotate: false
+  xy: 816, 326
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+pcol
+  rotate: false
+  xy: 881, 332
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+pdaily
+  rotate: false
+  xy: 801, 262
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+pfri
+  rotate: false
+  xy: 866, 262
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+scrollb
+  rotate: false
+  xy: 625, 57
+  size: 2, 152
+  orig: 2, 152
+  offset: 0, 0
+  index: -1
+arrowr
+  rotate: false
+  xy: 992, 942
+  size: 28, 48
+  orig: 28, 48
+  offset: 0, 0
+  index: -1
+mpnew
+  rotate: false
+  xy: 968, 923
+  size: 54, 17
+  orig: 54, 17
+  offset: 0, 0
+  index: -1
+pgol
+  rotate: false
+  xy: 636, 217
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+itemdefault
+  rotate: false
+  xy: 701, 229
+  size: 28, 50
+  orig: 73, 73
+  offset: 23, 11
+  index: -1
+pvp1
+  rotate: false
+  xy: 731, 230
+  size: 68, 36
+  orig: 68, 36
+  offset: 0, 0
+  index: -1
+bglogintext
+  rotate: false
+  xy: 801, 234
+  size: 67, 26
+  orig: 67, 26
+  offset: 0, 0
+  index: -1
+bglevel
+  rotate: false
+  xy: 870, 223
+  size: 59, 37
+  orig: 59, 37
+  offset: 0, 0
+  index: -1
+c0
+  rotate: false
+  xy: 460, 829
+  size: 21, 24
+  orig: 63, 62
+  offset: 21, 19
+  index: -1
+textgox
+  rotate: false
+  xy: 931, 267
+  size: 38, 63
+  orig: 120, 120
+  offset: 40, 33
+  index: -1
+btbgss
+  rotate: false
+  xy: 931, 207
+  size: 59, 58
+  orig: 59, 58
+  offset: 0, 0
+  index: -1
+arrdown
+  rotate: false
+  xy: 1001, 898
+  size: 22, 23
+  orig: 22, 23
+  offset: 0, 0
+  index: -1
+iconhp
+  rotate: false
+  xy: 1001, 873
+  size: 22, 23
+  orig: 22, 23
+  offset: 0, 0
+  index: -1
+piro
+  rotate: false
+  xy: 629, 147
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+pmap
+  rotate: false
+  xy: 629, 83
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+ppvp
+  rotate: false
+  xy: 629, 19
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+psil
+  rotate: false
+  xy: 919, 616
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+tcoin
+  rotate: false
+  xy: 935, 552
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+checkbk
+  rotate: false
+  xy: 984, 745
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+tdia
+  rotate: false
+  xy: 935, 488
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+tfri
+  rotate: false
+  xy: 944, 424
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+tgame
+  rotate: false
+  xy: 946, 360
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+rexp
+  rotate: false
+  xy: 946, 333
+  size: 56, 25
+  orig: 56, 25
+  offset: 0, 0
+  index: -1
+c3
+  rotate: false
+  xy: 971, 272
+  size: 44, 59
+  orig: 63, 62
+  offset: 10, 1
+  index: -1
+parrow
+  rotate: false
+  xy: 1009, 690
+  size: 14, 53
+  orig: 14, 53
+  offset: 0, 0
+  index: -1
+tmail
+  rotate: false
+  xy: 925, 681
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+tstr
+  rotate: false
+  xy: 801, 170
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+btlockbg
+  rotate: false
+  xy: 866, 163
+  size: 59, 58
+  orig: 59, 58
+  offset: 0, 0
+  index: -1
+btspdup12
+  rotate: false
+  xy: 927, 157
+  size: 55, 48
+  orig: 55, 48
+  offset: 0, 0
+  index: -1
+icondifficulty
+  rotate: false
+  xy: 990, 721
+  size: 17, 22
+  orig: 17, 22
+  offset: 0, 0
+  index: -1
+iconcardb
+  rotate: false
+  xy: 538, 23
+  size: 44, 59
+  orig: 67, 59
+  offset: 12, 0
+  index: -1
+btspdup22
+  rotate: false
+  xy: 542, 84
+  size: 55, 48
+  orig: 55, 48
+  offset: 0, 0
+  index: -1
+icontime
+  rotate: false
+  xy: 599, 102
+  size: 24, 33
+  orig: 24, 33
+  offset: 0, 0
+  index: -1
+mpstar1
+  rotate: false
+  xy: 599, 78
+  size: 24, 22
+  orig: 28, 28
+  offset: 2, 3
+  index: -1
+icondiam
+  rotate: false
+  xy: 756, 757
+  size: 34, 27
+  orig: 34, 27
+  offset: 0, 0
+  index: -1
+d3
+  rotate: false
+  xy: 694, 157
+  size: 44, 58
+  orig: 63, 62
+  offset: 10, 2
+  index: -1
+btspdup32
+  rotate: false
+  xy: 694, 107
+  size: 55, 48
+  orig: 55, 48
+  offset: 0, 0
+  index: -1
+btmsg
+  rotate: false
+  xy: 694, 60
+  size: 46, 45
+  orig: 101, 102
+  offset: 32, 29
+  index: -1
+btpaused
+  rotate: false
+  xy: 694, 15
+  size: 45, 43
+  orig: 45, 43
+  offset: 0, 0
+  index: -1
+sstar
+  rotate: false
+  xy: 751, 194
+  size: 48, 34
+  orig: 48, 34
+  offset: 0, 0
+  index: -1
+d1
+  rotate: false
+  xy: 740, 157
+  size: 40, 35
+  orig: 63, 62
+  offset: 12, 13
+  index: -1
+btclose2
+  rotate: false
+  xy: 751, 112
+  size: 44, 43
+  orig: 44, 43
+  offset: 0, 0
+  index: -1
+c2
+  rotate: false
+  xy: 797, 128
+  size: 45, 40
+  orig: 63, 62
+  offset: 9, 11
+  index: -1
+btchat
+  rotate: false
+  xy: 797, 103
+  size: 50, 23
+  orig: 89, 47
+  offset: 17, 13
+  index: -1
+iconactivity
+  rotate: false
+  xy: 984, 847
+  size: 19, 21
+  orig: 19, 22
+  offset: 0, 1
+  index: -1
+iconrename
+  rotate: false
+  xy: 1005, 851
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+d2
+  rotate: false
+  xy: 751, 74
+  size: 44, 36
+  orig: 63, 62
+  offset: 10, 13
+  index: -1
+stime
+  rotate: false
+  xy: 797, 67
+  size: 48, 34
+  orig: 48, 34
+  offset: 0, 0
+  index: -1
+btspdup1
+  rotate: false
+  xy: 927, 776
+  size: 36, 31
+  orig: 37, 31
+  offset: 0, 0
+  index: -1
+d0
+  rotate: false
+  xy: 925, 745
+  size: 28, 29
+  orig: 63, 62
+  offset: 18, 16
+  index: -1
+iconlea
+  rotate: false
+  xy: 844, 142
+  size: 20, 26
+  orig: 20, 26
+  offset: 0, 0
+  index: -1
+itemlvbk
+  rotate: false
+  xy: 866, 142
+  size: 54, 19
+  orig: 70, 70
+  offset: 16, 0
+  index: -1
+stype
+  rotate: false
+  xy: 849, 106
+  size: 48, 34
+  orig: 48, 34
+  offset: 0, 0
+  index: -1
+checkbkx
+  rotate: false
+  xy: 899, 102
+  size: 40, 38
+  orig: 40, 38
+  offset: 0, 0
+  index: -1
+btspdup2
+  rotate: false
+  xy: 584, 45
+  size: 36, 31
+  orig: 37, 31
+  offset: 0, 0
+  index: -1
+btspdup3
+  rotate: false
+  xy: 584, 12
+  size: 36, 31
+  orig: 37, 31
+  offset: 0, 0
+  index: -1
+giconexp
+  rotate: false
+  xy: 622, 1
+  size: 29, 16
+  orig: 29, 16
+  offset: 0, 0
+  index: -1
+mark
+  rotate: false
+  xy: 941, 123
+  size: 35, 32
+  orig: 70, 70
+  offset: 34, 1
+  index: -1
+iconcoinm
+  rotate: false
+  xy: 941, 94
+  size: 33, 27
+  orig: 34, 27
+  offset: 1, 0
+  index: -1
+itemnew
+  rotate: false
+  xy: 742, 55
+  size: 47, 17
+  orig: 70, 70
+  offset: 0, 52
+  index: -1
+iconcard
+  rotate: false
+  xy: 741, 20
+  size: 32, 33
+  orig: 32, 33
+  offset: 0, 0
+  index: -1
+iconcap
+  rotate: false
+  xy: 741, 1
+  size: 23, 17
+  orig: 23, 17
+  offset: 0, 0
+  index: -1
+tutorial
+  rotate: false
+  xy: 919, 605
+  size: 14, 9
+  split: 6, 7, 4, 4
+  orig: 14, 9
+  offset: 0, 0
+  index: -1
+batup
+  rotate: false
+  xy: 782, 164
+  size: 13, 28
+  orig: 13, 28
+  offset: 0, 0
+  index: -1
+bgnews
+  rotate: false
+  xy: 1004, 338
+  size: 19, 20
+  orig: 19, 20
+  offset: 0, 0
+  index: -1
+ticoncard
+  rotate: false
+  xy: 775, 20
+  size: 32, 33
+  orig: 32, 33
+  offset: 0, 0
+  index: -1
+c1
+  rotate: false
+  xy: 992, 242
+  size: 30, 28
+  orig: 63, 62
+  offset: 17, 17
+  index: -1
+iconcoin
+  rotate: false
+  xy: 992, 212
+  size: 30, 28
+  orig: 30, 28
+  offset: 0, 0
+  index: -1
+mpstar0
+  rotate: false
+  xy: 809, 37
+  size: 28, 28
+  orig: 28, 28
+  offset: 0, 0
+  index: -1
+btclose
+  rotate: false
+  xy: 809, 9
+  size: 28, 26
+  orig: 59, 58
+  offset: 15, 18
+  index: -1
+shopback
+  rotate: false
+  xy: 433, 1
+  size: 20, 14
+  split: 2, 2, 2, 2
+  orig: 20, 14
+  offset: 0, 0
+  index: -1
+iconking
+  rotate: false
+  xy: 455, 1
+  size: 18, 14
+  orig: 18, 14
+  offset: 0, 0
+  index: -1
+scrollbar
+  rotate: false
+  xy: 452, 528
+  size: 6, 16
+  orig: 6, 16
+  offset: 0, 0
+  index: -1
+btlock
+  rotate: false
+  xy: 438, 463
+  size: 26, 27
+  orig: 59, 58
+  offset: 17, 18
+  index: -1
+prelvx
+  rotate: false
+  xy: 653, 2
+  size: 24, 15
+  orig: 24, 15
+  offset: 0, 0
+  index: -1
+cl0
+  rotate: false
+  xy: 460, 808
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1
+cl1
+  rotate: false
+  xy: 460, 787
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 815, 489
+  size: 12, 11
+  split: 5, 6, 5, 5
+  orig: 12, 11
+  offset: 0, 0
+  index: -1
+upgraarr
+  rotate: false
+  xy: 1000, 666
+  size: 23, 22
+  orig: 23, 22
+  offset: 0, 0
+  index: -1
+lock
+  rotate: false
+  xy: 984, 637
+  size: 26, 27
+  orig: 39, 39
+  offset: 7, 6
+  index: -1
+cl2
+  rotate: false
+  xy: 984, 616
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1
+check
+  rotate: false
+  xy: 955, 748
+  size: 26, 26
+  orig: 39, 39
+  offset: 6, 7
+  index: -1
+iconatk
+  rotate: false
+  xy: 984, 179
+  size: 25, 26
+  orig: 25, 26
+  offset: 0, 0
+  index: -1
+btadd
+  rotate: false
+  xy: 984, 152
+  size: 26, 25
+  orig: 73, 73
+  offset: 41, 7
+  index: -1
+icondiamond
+  rotate: false
+  xy: 978, 124
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+giconcoin
+  rotate: false
+  xy: 839, 40
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+iconspd
+  rotate: false
+  xy: 839, 13
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+iconstar
+  rotate: false
+  xy: 1000, 592
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1
+cl3
+  rotate: false
+  xy: 1000, 571
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1
+iconfri
+  rotate: false
+  xy: 1000, 550
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1
+mpx
+  rotate: false
+  xy: 423, 73
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1

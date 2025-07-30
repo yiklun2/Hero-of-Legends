@@ -1,0 +1,40 @@
+
+raffle.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+light1
+  rotate: false
+  xy: 1, 226
+  size: 298, 262
+  orig: 300, 262
+  offset: 1, 0
+  index: -1
+light0
+  rotate: false
+  xy: 1, 96
+  size: 225, 128
+  orig: 225, 128
+  offset: 0, 0
+  index: -1
+cap1
+  rotate: false
+  xy: 301, 394
+  size: 172, 94
+  orig: 172, 94
+  offset: 0, 0
+  index: -1
+cap2
+  rotate: false
+  xy: 1, 1
+  size: 170, 93
+  orig: 170, 93
+  offset: 0, 0
+  index: -1
+cap3
+  rotate: false
+  xy: 301, 292
+  size: 158, 100
+  orig: 158, 100
+  offset: 0, 0
+  index: -1

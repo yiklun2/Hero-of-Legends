@@ -1,0 +1,76 @@
+
+mapspecial.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+mp0
+  rotate: false
+  xy: 1, 101
+  size: 1010, 406
+  orig: 1010, 406
+  offset: 0, 0
+  index: -1
+btbg0
+  rotate: false
+  xy: 1, 51
+  size: 89, 48
+  orig: 89, 48
+  offset: 0, 0
+  index: -1
+btbg1
+  rotate: false
+  xy: 1, 1
+  size: 89, 48
+  orig: 89, 48
+  offset: 0, 0
+  index: -1
+btbg2
+  rotate: false
+  xy: 92, 51
+  size: 89, 48
+  orig: 89, 48
+  offset: 0, 0
+  index: -1
+btbgx0
+  rotate: false
+  xy: 92, 1
+  size: 89, 48
+  orig: 89, 48
+  offset: 0, 0
+  index: -1
+btbgx1
+  rotate: false
+  xy: 183, 51
+  size: 89, 48
+  orig: 89, 48
+  offset: 0, 0
+  index: -1
+btbgx2
+  rotate: false
+  xy: 183, 1
+  size: 89, 48
+  orig: 89, 48
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 274, 75
+  size: 24, 24
+  split: 12, 11, 11, 12
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+mpassed
+  rotate: false
+  xy: 274, 52
+  size: 21, 21
+  orig: 21, 21
+  offset: 0, 0
+  index: -1
+mpassedun
+  rotate: false
+  xy: 300, 78
+  size: 21, 21
+  orig: 21, 21
+  offset: 0, 0
+  index: -1

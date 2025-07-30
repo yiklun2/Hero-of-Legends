@@ -1,0 +1,54 @@
+
+fonts_en.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+en_trajan24bold
+  rotate: false
+  xy: 1, 289
+  size: 256, 183
+  orig: 256, 183
+  offset: 0, 0
+  index: -1
+en_trajan18boldb
+  rotate: false
+  xy: 1, 171
+  size: 256, 116
+  orig: 256, 116
+  offset: 0, 0
+  index: -1
+en_pl18bold
+  rotate: false
+  xy: 1, 83
+  size: 256, 86
+  orig: 256, 86
+  offset: 0, 0
+  index: -1
+en_trajan18bold
+  rotate: false
+  xy: 259, 258
+  size: 128, 214
+  orig: 128, 214
+  offset: 0, 0
+  index: -1
+en_pl14
+  rotate: false
+  xy: 1, 22
+  size: 256, 59
+  orig: 256, 59
+  offset: 0, 0
+  index: -1
+en_trajan14bold
+  rotate: false
+  xy: 259, 100
+  size: 128, 156
+  orig: 128, 156
+  offset: 0, 0
+  index: -1
+en_trajan11
+  rotate: false
+  xy: 259, 1
+  size: 128, 97
+  orig: 128, 97
+  offset: 0, 0
+  index: -1

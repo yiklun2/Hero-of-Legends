@@ -1,0 +1,12 @@
+
+bggameover.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bgreward
+  rotate: false
+  xy: 1, 1
+  size: 480, 800
+  orig: 480, 800
+  offset: 0, 0
+  index: -1
