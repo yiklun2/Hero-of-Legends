@@ -4375,7 +4375,7 @@
 
     const/4 v11, -0x1
 
-    const/4 v10, 0x5
+    const/4 v10, 0x6
 
     const/4 v9, 0x0
 
@@ -4671,7 +4671,7 @@
     .line 876
     iput v12, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->state_server:I
 
-    goto/16 :goto_1
+    goto :goto_1
 
     .line 897
     .end local v4    # "result":I
