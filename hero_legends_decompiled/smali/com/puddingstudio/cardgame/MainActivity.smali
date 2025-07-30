@@ -4254,103 +4254,17 @@
 .end method
 
 .method public onResume()V
-    .locals 4
-
-    .prologue
-    .line 409
-    const-string v1, " on resume"
-
-    invoke-static {v1}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
-
-    .line 410
+    .locals 2
     invoke-super {p0}, Lcom/puddingstudio/cardgame/DoodleGame;->onResume()V
-
-    .line 413
-    :try_start_0
-    invoke-virtual {p0}, Lcom/puddingstudio/cardgame/MainActivity;->cancelNotify()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 419
-    :goto_0
-    :try_start_1
-    iget-object v1, p0, Lcom/puddingstudio/cardgame/MainActivity;->facebook_helper:Lcom/puddingstudio/cardgame/FacebookHelper;
-
-    invoke-virtual {v1}, Lcom/puddingstudio/cardgame/FacebookHelper;->onResume()V
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
-
-    .line 426
-    :goto_1
-    :try_start_2
-    invoke-direct {p0}, Lcom/puddingstudio/cardgame/MainActivity;->checkPlayServices()Z
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_2
-
-    .line 433
-    :goto_2
-    :try_start_3
-    const-string v1, "c2f76902170f6467154c4552e8fd369b"
-
-    const/4 v2, 0x0
-
-    const/4 v3, 0x0
-
-    invoke-static {v1, v2, v3, p0}, Lcom/sponsorpay/SponsorPay;->start(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/app/Activity;)Ljava/lang/String;
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_3
-
-    .line 439
-    :goto_3
-    const-string v1, " on resume finished"
-
-    invoke-static {v1}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
-
-    .line 440
+    # PATCH: 极限防护，强制跳转主菜单
+    iget-object v0, p0, Lcom/puddingstudio/cardgame/MainActivity;->cardgame:Lcom/puddingstudio/cardgame/CardGame;
+    if-eqz v0, :skip_patch_resume
+    invoke-virtual {v0, 0x1}, Lcom/puddingstudio/cardgame/CardGame;->getScene(I)Lcom/puddingstudio/cardgame/engine/Scene;
+    move-result-object v1
+    if-eqz v1, :skip_patch_resume
+    invoke-virtual {v0, v1}, Lcom/puddingstudio/cardgame/CardGame;->setScene(Lcom/puddingstudio/cardgame/engine/Scene;)V
+    :skip_patch_resume
     return-void
-
-    .line 415
-    :catch_0
-    move-exception v0
-
-    .line 416
-    .local v0, "e":Ljava/lang/Exception;
-    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
-
-    goto :goto_0
-
-    .line 421
-    .end local v0    # "e":Ljava/lang/Exception;
-    :catch_1
-    move-exception v0
-
-    .line 422
-    .restart local v0    # "e":Ljava/lang/Exception;
-    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
-
-    goto :goto_1
-
-    .line 428
-    .end local v0    # "e":Ljava/lang/Exception;
-    :catch_2
-    move-exception v0
-
-    .line 429
-    .restart local v0    # "e":Ljava/lang/Exception;
-    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
-
-    goto :goto_2
-
-    .line 435
-    .end local v0    # "e":Ljava/lang/Exception;
-    :catch_3
-    move-exception v0
-
-    .line 436
-    .restart local v0    # "e":Ljava/lang/Exception;
-    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
-
-    goto :goto_3
 .end method
 
 .method public onRoomAutoMatching(Lcom/google/android/gms/games/multiplayer/realtime/Room;)V
