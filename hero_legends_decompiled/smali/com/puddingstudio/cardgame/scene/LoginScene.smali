@@ -251,6 +251,28 @@
 
     invoke-virtual {v0, p0, v3}, Lcom/puddingstudio/cardgame/DoodleHelper;->addTutorialStepListener(Lcom/puddingstudio/cardgame/DoodleHelper$TutorialStepListener;I)V
 
+    # ULTIMATE CONSTRUCTOR PATCH: 构造函数完成后立即触发离线模式
+    :try_start_constructor_patch
+    const-string v0, "LoginScene构造函数完成，立即启动离线模式"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    # 强制初始化离线玩家数据
+    invoke-static {}, Lcom/puddingstudio/cardgame/data/ItemManager;->getInstance()Lcom/puddingstudio/cardgame/data/ItemManager;
+    move-result-object v0
+    invoke-virtual {v0}, Lcom/puddingstudio/cardgame/data/ItemManager;->initOfflinePlayer()V
+    
+    # 立即调用ready()跳过所有登录流程
+    invoke-virtual {p0}, Lcom/puddingstudio/cardgame/scene/LoginScene;->ready()V
+    :try_end_constructor_patch
+    .catch Ljava/lang/Exception; {:try_start_constructor_patch .. :try_end_constructor_patch} :catch_constructor_patch
+    goto :constructor_complete
+    
+    :catch_constructor_patch
+    move-exception v0
+    const-string v1, "构造函数补丁失败，但不影响游戏"
+    invoke-static {v1}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    :constructor_complete
     .line 114
     return-void
 
@@ -2938,7 +2960,7 @@
 .end method
 
 .method public ready()V
-    .locals 2
+    .locals 10
 
     .prologue
     .line 147
@@ -2953,6 +2975,47 @@
 
     iput-boolean v1, v0, Lcom/puddingstudio/cardgame/engine/actor/ButtonActor;->visible:Z
 
+    # ULTIMATE PATCH: 直接切换到MainScene，绕过所有用户交互
+    :try_start_ready
+    const-string v0, "ready() 被调用，立即强制切换到MainScene"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    # 获取CardGame实例
+    invoke-static {}, Lcom/puddingstudio/cardgame/CardGame;->getInstance()Lcom/puddingstudio/cardgame/CardGame;
+    move-result-object v2
+    
+    # 强制初始化离线玩家数据
+    invoke-static {}, Lcom/puddingstudio/cardgame/data/ItemManager;->getInstance()Lcom/puddingstudio/cardgame/data/ItemManager;
+    move-result-object v3
+    invoke-virtual {v3}, Lcom/puddingstudio/cardgame/data/ItemManager;->initOfflinePlayer()V
+    
+    # 获取或创建MainScene
+    invoke-virtual {v2}, Lcom/puddingstudio/cardgame/CardGame;->getMainScene()Lcom/puddingstudio/cardgame/scene/MainScene;
+    move-result-object v4
+    
+    if-nez v4, :main_scene_ready
+    # 如果MainScene不存在，创建一个
+    new-instance v4, Lcom/puddingstudio/cardgame/scene/MainScene;
+    invoke-direct {v4, v2}, Lcom/puddingstudio/cardgame/scene/MainScene;-><init>(Lcom/puddingstudio/cardgame/CardGame;)V
+    const-string v5, "ready() 中创建了新的MainScene"
+    invoke-static {v5}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    
+    :main_scene_ready
+    # 直接设置MainScene，简化场景切换逻辑
+    invoke-virtual {v2, v4}, Lcom/puddingstudio/cardgame/CardGame;->setScene(Lcom/puddingstudio/cardgame/engine/Scene;)V
+    const-string v5, "ready() 强制设置MainScene成功"
+    invoke-static {v5}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    :try_end_ready
+    .catch Ljava/lang/Exception; {:try_start_ready .. :try_end_ready} :catch_ready_exception
+    goto :ready_complete
+    
+    :catch_ready_exception
+    move-exception v0
+    const-string v1, "ready() 场景切换失败，但不影响游戏继续"
+    invoke-static {v1}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
+    
+    :ready_complete
     .line 150
     return-void
 .end method
