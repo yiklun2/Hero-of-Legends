@@ -2109,25 +2109,39 @@
 
     .prologue
     const/4 v4, 0x1
-
     const/high16 v3, 0x44480000    # 800.0f
-
     const/high16 v2, 0x43f00000    # 480.0f
-
-    .line 375
     packed-switch p1, :pswitch_data_0
-
-    .line 426
+    :pswitch_0
+    :try_start_main
+    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
+    if-nez v0, :cond_1
+    new-instance v0, Lcom/puddingstudio/cardgame/scene/MainScene;
+    iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->sprite_batch:Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;
+    invoke-direct {v0, v2, v3, v1}, Lcom/puddingstudio/cardgame/scene/MainScene;-><init>(FFLcom/badlogic/gdx/graphics/g2d/SpriteBatch;)V
+    iput-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
+    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
+    iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->camera:Lcom/badlogic/gdx/graphics/OrthographicCamera;
+    invoke-virtual {v0, v1, v4}, Lcom/puddingstudio/cardgame/scene/MainScene;->setCamera(Lcom/badlogic/gdx/graphics/OrthographicCamera;Z)V
+    :cond_1
+    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
+    # 日志辅助
+    const-string v1, "PATCH: 已极限防护，进入主菜单MainScene"
+    invoke-static {v1}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    return-object v0
+    :try_end_main
+    .catchall {:try_start_main .. :try_end_main} :catch_main
+    :catch_main
+    const-string v1, "PATCH: MainScene初始化异常，极限防护生效"
+    invoke-static {v1}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
     const/4 v0, 0x0
-
-    :goto_0
     return-object v0
 
     .line 377
-    :pswitch_0
+    :pswitch_1
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_2
 
     .line 378
     new-instance v0, Lcom/puddingstudio/cardgame/scene/MainScene;
@@ -2146,46 +2160,18 @@
     invoke-virtual {v0, v1, v4}, Lcom/puddingstudio/cardgame/scene/MainScene;->setCamera(Lcom/badlogic/gdx/graphics/OrthographicCamera;Z)V
 
     .line 381
-    :cond_1
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
-
-    goto :goto_0
-
-    .line 384
-    :pswitch_1
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
-
-    if-nez v0, :cond_2
-
-    .line 385
-    new-instance v0, Lcom/puddingstudio/cardgame/scene/MainScene;
-
-    iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->sprite_batch:Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;
-
-    invoke-direct {v0, v2, v3, v1}, Lcom/puddingstudio/cardgame/scene/MainScene;-><init>(FFLcom/badlogic/gdx/graphics/g2d/SpriteBatch;)V
-
-    iput-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
-
-    .line 386
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
-
-    iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->camera:Lcom/badlogic/gdx/graphics/OrthographicCamera;
-
-    invoke-virtual {v0, v1, v4}, Lcom/puddingstudio/cardgame/scene/MainScene;->setCamera(Lcom/badlogic/gdx/graphics/OrthographicCamera;Z)V
-
-    .line 388
     :cond_2
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
 
     goto :goto_0
 
-    .line 391
+    .line 384
     :pswitch_2
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->game_scene:Lcom/puddingstudio/cardgame/scene/GameScene;
 
     if-nez v0, :cond_3
 
-    .line 392
+    .line 385
     new-instance v0, Lcom/puddingstudio/cardgame/scene/GameScene;
 
     iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->sprite_batch:Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;
@@ -2194,26 +2180,26 @@
 
     iput-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->game_scene:Lcom/puddingstudio/cardgame/scene/GameScene;
 
-    .line 393
+    .line 386
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->game_scene:Lcom/puddingstudio/cardgame/scene/GameScene;
 
     iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->camera:Lcom/badlogic/gdx/graphics/OrthographicCamera;
 
     invoke-virtual {v0, v1, v4}, Lcom/puddingstudio/cardgame/scene/GameScene;->setCamera(Lcom/badlogic/gdx/graphics/OrthographicCamera;Z)V
 
-    .line 395
+    .line 388
     :cond_3
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->game_scene:Lcom/puddingstudio/cardgame/scene/GameScene;
 
     goto :goto_0
 
-    .line 398
+    .line 391
     :pswitch_3
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->battle_scene:Lcom/puddingstudio/cardgame/scene/VersusScene;
 
     if-nez v0, :cond_4
 
-    .line 399
+    .line 392
     new-instance v0, Lcom/puddingstudio/cardgame/scene/VersusScene;
 
     iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->sprite_batch:Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;
@@ -2222,26 +2208,26 @@
 
     iput-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->battle_scene:Lcom/puddingstudio/cardgame/scene/VersusScene;
 
-    .line 400
+    .line 393
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->battle_scene:Lcom/puddingstudio/cardgame/scene/VersusScene;
 
     iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->camera:Lcom/badlogic/gdx/graphics/OrthographicCamera;
 
     invoke-virtual {v0, v1, v4}, Lcom/puddingstudio/cardgame/scene/VersusScene;->setCamera(Lcom/badlogic/gdx/graphics/OrthographicCamera;Z)V
 
-    .line 402
+    .line 395
     :cond_4
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->battle_scene:Lcom/puddingstudio/cardgame/scene/VersusScene;
 
     goto :goto_0
 
-    .line 405
+    .line 398
     :pswitch_4
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->reward_scene:Lcom/puddingstudio/cardgame/scene/GameResultScene;
 
     if-nez v0, :cond_5
 
-    .line 406
+    .line 399
     new-instance v0, Lcom/puddingstudio/cardgame/scene/GameResultScene;
 
     iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->sprite_batch:Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;
@@ -2250,26 +2236,26 @@
 
     iput-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->reward_scene:Lcom/puddingstudio/cardgame/scene/GameResultScene;
 
-    .line 407
+    .line 400
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->reward_scene:Lcom/puddingstudio/cardgame/scene/GameResultScene;
 
     iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->camera:Lcom/badlogic/gdx/graphics/OrthographicCamera;
 
     invoke-virtual {v0, v1, v4}, Lcom/puddingstudio/cardgame/scene/GameResultScene;->setCamera(Lcom/badlogic/gdx/graphics/OrthographicCamera;Z)V
 
-    .line 409
+    .line 402
     :cond_5
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->reward_scene:Lcom/puddingstudio/cardgame/scene/GameResultScene;
 
     goto :goto_0
 
-    .line 412
+    .line 405
     :pswitch_5
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->slot_scene:Lcom/puddingstudio/cardgame/scene/SlotScene;
 
     if-nez v0, :cond_6
 
-    .line 413
+    .line 406
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2292,7 +2278,7 @@
 
     invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
 
-    .line 414
+    .line 407
     new-instance v0, Lcom/puddingstudio/cardgame/scene/SlotScene;
 
     iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->sprite_batch:Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;
@@ -2301,26 +2287,26 @@
 
     iput-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->slot_scene:Lcom/puddingstudio/cardgame/scene/SlotScene;
 
-    .line 415
+    .line 408
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->slot_scene:Lcom/puddingstudio/cardgame/scene/SlotScene;
 
     iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->camera:Lcom/badlogic/gdx/graphics/OrthographicCamera;
 
     invoke-virtual {v0, v1, v4}, Lcom/puddingstudio/cardgame/scene/SlotScene;->setCamera(Lcom/badlogic/gdx/graphics/OrthographicCamera;Z)V
 
-    .line 417
+    .line 410
     :cond_6
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->slot_scene:Lcom/puddingstudio/cardgame/scene/SlotScene;
 
     goto :goto_0
 
-    .line 420
+    .line 413
     :pswitch_6
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->pvp_scene:Lcom/puddingstudio/cardgame/scene/PVPGameScene;
 
     if-nez v0, :cond_7
 
-    .line 421
+    .line 414
     new-instance v0, Lcom/puddingstudio/cardgame/scene/PVPGameScene;
 
     iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->sprite_batch:Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;
@@ -2329,14 +2315,14 @@
 
     iput-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->pvp_scene:Lcom/puddingstudio/cardgame/scene/PVPGameScene;
 
-    .line 422
+    .line 415
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->pvp_scene:Lcom/puddingstudio/cardgame/scene/PVPGameScene;
 
     iget-object v1, p0, Lcom/puddingstudio/cardgame/CardGame;->camera:Lcom/badlogic/gdx/graphics/OrthographicCamera;
 
     invoke-virtual {v0, v1, v4}, Lcom/puddingstudio/cardgame/scene/PVPGameScene;->setCamera(Lcom/badlogic/gdx/graphics/OrthographicCamera;Z)V
 
-    .line 424
+    .line 417
     :cond_7
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->pvp_scene:Lcom/puddingstudio/cardgame/scene/PVPGameScene;
 
