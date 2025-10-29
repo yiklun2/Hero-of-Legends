@@ -388,6 +388,7 @@
 
     .prologue
     .line 273
+    # Modified: Always return true for offline mode
     const/4 v0, 0x1
 
     return v0

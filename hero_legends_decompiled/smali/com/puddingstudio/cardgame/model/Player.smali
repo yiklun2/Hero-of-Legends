@@ -55,3 +55,23 @@
 
     return-void
 .end method
+
+.method public getCoin()J
+    .locals 2
+
+    .prologue
+    # Modified: Return unlimited coins (999999999)
+    const-wide/32 v0, 0x3b9ac9ff
+
+    return-wide v0
+.end method
+
+.method public getDiamond()J
+    .locals 2
+
+    .prologue
+    # Modified: Return unlimited diamonds (999999999)
+    const-wide/32 v0, 0x3b9ac9ff
+
+    return-wide v0
+.end method

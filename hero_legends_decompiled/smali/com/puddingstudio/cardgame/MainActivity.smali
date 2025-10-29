@@ -1628,210 +1628,15 @@
 .end method
 
 .method private sendPurchaseInfoToServerToVerifyAndConsume(Lcom/junerking/iab/util/Purchase;)Z
-    .locals 13
+    .locals 1
     .param p1, "purchase"    # Lcom/junerking/iab/util/Purchase;
 
     .prologue
-    const/4 v11, 0x1
-
-    const/4 v0, 0x0
-
     .line 1003
-    if-nez p1, :cond_1
+    # Modified: Always return true for free IAP
+    const/4 v0, 0x1
 
-    move v11, v0
-
-    .line 1038
-    :cond_0
-    :goto_0
-    return v11
-
-    .line 1005
-    :cond_1
-    invoke-virtual {p1}, Lcom/junerking/iab/util/Purchase;->getSku()Ljava/lang/String;
-
-    move-result-object v6
-
-    .line 1006
-    .local v6, "purchaseSku":Ljava/lang/String;
-    if-nez v6, :cond_2
-
-    move v11, v0
-
-    .line 1007
-    goto :goto_0
-
-    .line 1008
-    :cond_2
-    iput-object p1, p0, Lcom/puddingstudio/cardgame/MainActivity;->purchase:Lcom/junerking/iab/util/Purchase;
-
-    .line 1009
-    const/4 v10, 0x0
-
-    .local v10, "i":I
-    :goto_1
-    sget-object v0, Lcom/puddingstudio/cardgame/DoodleHelper;->coin_ids:[Ljava/lang/String;
-
-    array-length v0, v0
-
-    if-ge v10, v0, :cond_0
-
-    .line 1010
-    sget-object v0, Lcom/puddingstudio/cardgame/DoodleHelper;->coin_ids:[Ljava/lang/String;
-
-    aget-object v0, v0, v10
-
-    invoke-virtual {v6, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v0
-
-    if-nez v0, :cond_3
-
-    .line 1009
-    :goto_2
-    add-int/lit8 v10, v10, 0x1
-
-    goto :goto_1
-
-    .line 1012
-    :cond_3
-    const/4 v0, 0x6
-
-    if-ge v10, v0, :cond_4
-
-    move v2, v11
-
-    .line 1013
-    .local v2, "type":I
-    :goto_3
-    sget-object v0, Lcom/puddingstudio/cardgame/DoodleHelper;->buy_count:[I
-
-    aget v3, v0, v10
-
-    .line 1014
-    .local v3, "count":I
-    invoke-virtual {p1}, Lcom/junerking/iab/util/Purchase;->getOrderId()Ljava/lang/String;
-
-    move-result-object v4
-
-    .line 1015
-    .local v4, "order_id":Ljava/lang/String;
-    invoke-virtual {p1}, Lcom/junerking/iab/util/Purchase;->getPackageName()Ljava/lang/String;
-
-    move-result-object v5
-
-    .line 1016
-    .local v5, "package_name":Ljava/lang/String;
-    invoke-virtual {p1}, Lcom/junerking/iab/util/Purchase;->getToken()Ljava/lang/String;
-
-    move-result-object v7
-
-    .line 1017
-    .local v7, "token":Ljava/lang/String;
-    invoke-virtual {p1}, Lcom/junerking/iab/util/Purchase;->getDeveloperPayload()Ljava/lang/String;
-
-    move-result-object v8
-
-    .line 1018
-    .local v8, "developer_payload":Ljava/lang/String;
-    new-instance v0, Ljava/lang/StringBuilder;
-
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v1, "<<<<<purchase detail:>>>>>\norder_id: "
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    const-string v1, "\npackage_name: "
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    invoke-virtual {v0, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    const-string v1, "\ntoken: "
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    invoke-virtual {v0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    const-string v1, "\nsku: "
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    invoke-virtual {v0, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    const-string v1, "\ndeveloper payload: "
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    invoke-virtual {v0, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v0
-
-    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
-
-    .line 1022
-    :try_start_0
-    sget-object v12, Lcom/badlogic/gdx/Gdx;->app:Lcom/badlogic/gdx/Application;
-
-    new-instance v0, Lcom/puddingstudio/cardgame/MainActivity$7;
-
-    move-object v1, p0
-
-    invoke-direct/range {v0 .. v8}, Lcom/puddingstudio/cardgame/MainActivity$7;-><init>(Lcom/puddingstudio/cardgame/MainActivity;IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-
-    invoke-interface {v12, v0}, Lcom/badlogic/gdx/Application;->postRunnable(Ljava/lang/Runnable;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
-
-    goto :goto_2
-
-    .line 1034
-    :catch_0
-    move-exception v9
-
-    .line 1035
-    .local v9, "e":Ljava/lang/Exception;
-    invoke-virtual {v9}, Ljava/lang/Exception;->printStackTrace()V
-
-    goto :goto_2
-
-    .line 1012
-    .end local v2    # "type":I
-    .end local v3    # "count":I
-    .end local v4    # "order_id":Ljava/lang/String;
-    .end local v5    # "package_name":Ljava/lang/String;
-    .end local v7    # "token":Ljava/lang/String;
-    .end local v8    # "developer_payload":Ljava/lang/String;
-    .end local v9    # "e":Ljava/lang/Exception;
-    :cond_4
-    const/4 v2, 0x2
-
-    goto :goto_3
+    return v0
 .end method
 
 .method private sendRegistrationIdToBackend()V
@@ -2371,51 +2176,11 @@
     .locals 5
 
     .prologue
-    const/4 v3, 0x0
-
     .line 1125
-    :try_start_0
-    const-string v4, "connectivity"
+    # Modified: Always return true for offline mode
+    const/4 v3, 0x1
 
-    invoke-virtual {p0, v4}, Lcom/puddingstudio/cardgame/MainActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
-
-    move-result-object v2
-
-    check-cast v2, Landroid/net/ConnectivityManager;
-
-    .line 1126
-    .local v2, "mConnectivity":Landroid/net/ConnectivityManager;
-    invoke-virtual {v2}, Landroid/net/ConnectivityManager;->getActiveNetworkInfo()Landroid/net/NetworkInfo;
-
-    move-result-object v1
-
-    .line 1127
-    .local v1, "info":Landroid/net/NetworkInfo;
-    if-eqz v1, :cond_0
-
-    .line 1128
-    invoke-virtual {v1}, Landroid/net/NetworkInfo;->isConnected()Z
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
-
-    move-result v3
-
-    .line 1134
-    .end local v1    # "info":Landroid/net/NetworkInfo;
-    .end local v2    # "mConnectivity":Landroid/net/ConnectivityManager;
-    :cond_0
-    :goto_0
     return v3
-
-    .line 1131
-    :catch_0
-    move-exception v0
-
-    .line 1132
-    .local v0, "e":Ljava/lang/Exception;
-    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
-
-    goto :goto_0
 .end method
 
 .method public createBilling()V
