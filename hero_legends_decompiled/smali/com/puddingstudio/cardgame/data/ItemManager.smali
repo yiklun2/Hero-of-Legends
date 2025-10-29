@@ -3190,9 +3190,8 @@
 
     .prologue
     .line 1442
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/data/ItemManager;->user:Lcom/puddingstudio/cardgame/model/Player;
-
-    iget-wide v0, v0, Lcom/puddingstudio/cardgame/model/Player;->coin:J
+    # Modified: Always return infinite coins (999999999)
+    const-wide v0, 0x3b9ac9ffL    # 999999999L
 
     return-wide v0
 .end method
