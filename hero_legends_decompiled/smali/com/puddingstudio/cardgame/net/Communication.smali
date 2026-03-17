@@ -213,17 +213,14 @@
 
     .prologue
     .line 115
-    # Modified: Always return true for offline mode
+    # Offline stub mode: report connected so game flow can continue without blocking dialogs.
     const/4 v1, 0x1
 
     iput-boolean v1, p0, Lcom/puddingstudio/cardgame/net/Communication;->connect_status:Z
 
-    const-string v0, "=== offline mode: simulating connection success ==="
+    const-string v0, "=== offline mode: virtual connection ready ==="
 
     invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
-
-    .line 170
-    const/4 v1, 0x1
 
     return v1
 .end method
@@ -388,7 +385,7 @@
 
     .prologue
     .line 273
-    # Modified: Always return true for offline mode
+    # Offline stub mode: keep game logic progressing as if network is available.
     const/4 v0, 0x1
 
     return v0
@@ -448,74 +445,38 @@
 .end method
 
 .method public send(Lcom/puddingstudio/cardgame/net/Communication$RequestMessage;)V
-    .locals 4
+    .locals 5
     .param p1, "request"    # Lcom/puddingstudio/cardgame/net/Communication$RequestMessage;
 
     .prologue
     .line 256
-    invoke-virtual {p0}, Lcom/puddingstudio/cardgame/net/Communication;->checkNetwork()Z
+    # Offline stub mode: do not send to socket; dispatch immediate local callback with non-empty body.
+    if-eqz p1, :cond_0
 
-    move-result v0
-
-    if-nez v0, :cond_0
-
-    .line 270
-    :goto_0
-    return-void
-
-    .line 258
-    :cond_0
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/net/Communication;->client:Lcom/puddingstudio/cardgame/net/TcpClient;
-
-    if-nez v0, :cond_1
-
-    .line 259
     const/4 v0, 0x1
+
+    new-array v3, v0, [B
 
     const/4 v1, 0x0
 
-    invoke-virtual {p0, v0, v1}, Lcom/puddingstudio/cardgame/net/Communication;->Close_Connection(ZZ)V
+    const/4 v2, 0x1
 
-    .line 260
+    aput-byte v2, v3, v1
+
+    new-instance v4, Lcom/puddingstudio/cardgame/net/Communication$ResponseMessage;
+
+    iget v2, p1, Lcom/puddingstudio/cardgame/net/Communication$RequestMessage;->api:I
+
+    invoke-direct {v4, v2, v3}, Lcom/puddingstudio/cardgame/net/Communication$ResponseMessage;-><init>(I[B)V
+
     iget-object v0, p0, Lcom/puddingstudio/cardgame/net/Communication;->response_stack:Ljava/util/concurrent/ConcurrentLinkedQueue;
 
-    new-instance v1, Lcom/puddingstudio/cardgame/net/Communication$ResponseMessage;
+    invoke-virtual {v0, v4}, Ljava/util/concurrent/ConcurrentLinkedQueue;->add(Ljava/lang/Object;)Z
 
-    const/4 v2, -0x1
+    invoke-virtual {p1, v4}, Lcom/puddingstudio/cardgame/net/Communication$RequestMessage;->callBack(Lcom/puddingstudio/cardgame/net/Communication$ResponseMessage;)V
 
-    const/4 v3, 0x0
-
-    invoke-direct {v1, v2, v3}, Lcom/puddingstudio/cardgame/net/Communication$ResponseMessage;-><init>(I[B)V
-
-    invoke-virtual {v0, v1}, Ljava/util/concurrent/ConcurrentLinkedQueue;->add(Ljava/lang/Object;)Z
-
-    goto :goto_0
-
-    .line 264
-    :cond_1
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/net/Communication;->sending_thread:Lcom/puddingstudio/cardgame/net/TcpThreadSending;
-
-    if-nez v0, :cond_2
-
-    .line 265
-    new-instance v0, Lcom/puddingstudio/cardgame/net/TcpThreadSending;
-
-    invoke-direct {v0, p0}, Lcom/puddingstudio/cardgame/net/TcpThreadSending;-><init>(Lcom/puddingstudio/cardgame/net/Communication;)V
-
-    iput-object v0, p0, Lcom/puddingstudio/cardgame/net/Communication;->sending_thread:Lcom/puddingstudio/cardgame/net/TcpThreadSending;
-
-    .line 266
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/net/Communication;->sending_thread:Lcom/puddingstudio/cardgame/net/TcpThreadSending;
-
-    invoke-virtual {v0}, Lcom/puddingstudio/cardgame/net/TcpThreadSending;->start()V
-
-    .line 269
-    :cond_2
-    iget-object v0, p0, Lcom/puddingstudio/cardgame/net/Communication;->request_queue:Ljava/util/concurrent/ConcurrentLinkedQueue;
-
-    invoke-virtual {v0, p1}, Ljava/util/concurrent/ConcurrentLinkedQueue;->add(Ljava/lang/Object;)Z
-
-    goto :goto_0
+    :cond_0
+    return-void
 .end method
 
 .method public setCallBackListener(Lcom/puddingstudio/cardgame/net/TcpClient$TcpCallBack;)V
