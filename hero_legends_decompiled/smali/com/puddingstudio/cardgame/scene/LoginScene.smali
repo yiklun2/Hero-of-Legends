@@ -3137,6 +3137,12 @@
     .line 750
     iput v2, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->state_server:I
 
+    .line 751
+    # Offline-stability patch: prevent login scene from stalling on repeated no-network retries.
+    const/4 v0, 0x1
+
+    iput-boolean v0, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->network_done:Z
+
     .line 752
     const-string v0, "==========retry connect!"
 
