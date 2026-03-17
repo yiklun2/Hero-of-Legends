@@ -1,8 +1,0 @@
-# Code-only delivery policy for this repo workstream
-# Prevent newly generated binary artifacts from being committed.
-*.apk
-*.apks
-*.aab
-*.zip
-
-# Keep existing tracked binaries untouched; this only affects new files.
