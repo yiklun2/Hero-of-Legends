@@ -3137,6 +3137,12 @@
     .line 750
     iput v2, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->state_server:I
 
+    .line 751
+    # Offline-stability patch: prevent login scene from stalling on repeated no-network retries.
+    const/4 v0, 0x1
+
+    iput-boolean v0, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->network_done:Z
+
     .line 752
     const-string v0, "==========retry connect!"
 
@@ -4698,9 +4704,21 @@
 
     iget-object v6, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->login_msg:Lcom/puddingstudio/cardgame/proto/CardProto$CCLoginResponse;
 
+    if-nez v6, :cond_offline_login_msg_ready
+
+    # Crash-fix: if login protobuf is absent in offline flow, initialize local player data directly.
+    invoke-virtual {v5}, Lcom/puddingstudio/cardgame/data/ItemManager;->initOfflinePlayer()V
+
+    const/4 v4, 0x0
+
+    goto :goto_offline_init_done
+
+    :cond_offline_login_msg_ready
     invoke-virtual {v5, v6}, Lcom/puddingstudio/cardgame/data/ItemManager;->initPlayerData(Lcom/puddingstudio/cardgame/proto/CardProto$CCLoginResponse;)I
 
     move-result v4
+
+    :goto_offline_init_done
 
     .line 847
     .local v4, "result":I

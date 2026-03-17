@@ -314,9 +314,8 @@
     if-ne p1, v0, :cond_1
 
     .line 91
-    sget-object v0, Lcom/badlogic/gdx/Gdx;->app:Lcom/badlogic/gdx/Application;
-
-    invoke-interface {v0}, Lcom/badlogic/gdx/Application;->exit()V
+    # Offline-stability patch: avoid hard exit when no-network cancel is pressed.
+    invoke-virtual {p0}, Lcom/puddingstudio/cardgame/dialog/DialogNoNetwork;->dismiss()V
 
     .line 94
     :cond_1

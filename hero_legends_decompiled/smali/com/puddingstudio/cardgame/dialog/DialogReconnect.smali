@@ -380,9 +380,8 @@
     if-ne p1, v0, :cond_0
 
     .line 123
-    sget-object v0, Lcom/badlogic/gdx/Gdx;->app:Lcom/badlogic/gdx/Application;
-
-    invoke-interface {v0}, Lcom/badlogic/gdx/Application;->exit()V
+    # Offline-stability patch: avoid forcing app exit from reconnect dialog cancel.
+    invoke-virtual {p0}, Lcom/puddingstudio/cardgame/dialog/DialogReconnect;->dismiss()V
 
     goto :goto_0
 
