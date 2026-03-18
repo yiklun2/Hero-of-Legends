@@ -1825,6 +1825,11 @@
     .param p1, "call_back_listener"    # Lcom/puddingstudio/cardgame/net/Communication$SocketCallBack;
 
     .prologue
+    # Offline patch: skip server login entirely.
+    const-string v0, "offline login bypass"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    return-void
+
     .line 106
     invoke-virtual {p0}, Lcom/puddingstudio/cardgame/net/CardCommunication;->getConnectionStatus()Z
 
@@ -2017,6 +2022,12 @@
     .param p5, "call_back_listener"    # Lcom/puddingstudio/cardgame/net/Communication$SocketCallBack;
 
     .prologue
+    # Offline patch: treat map clear as local success.
+    const-string v0, "offline mapClearRequest bypass"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    const/4 v1, 0x1
+    return v1
+
     const/4 v1, 0x0
 
     .line 242
@@ -2093,6 +2104,12 @@
     .param p9, "call_back_listener"    # Lcom/puddingstudio/cardgame/net/Communication$SocketCallBack;
 
     .prologue
+    # Offline patch: treat map request as local success.
+    const-string v2, "offline mapRequest bypass"
+    invoke-static {v2}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    const/4 v2, 0x1
+    return v2
+
     .line 252
     new-instance v2, Ljava/lang/StringBuilder;
 
