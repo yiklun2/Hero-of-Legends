@@ -452,6 +452,11 @@
     .param p1, "request"    # Lcom/puddingstudio/cardgame/net/Communication$RequestMessage;
 
     .prologue
+    # Offline patch: skip all real network send/queue logic to avoid reconnect dialogs or stalls.
+    const-string v0, "offline send intercepted"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    return-void
+
     .line 256
     invoke-virtual {p0}, Lcom/puddingstudio/cardgame/net/Communication;->checkNetwork()Z
 
