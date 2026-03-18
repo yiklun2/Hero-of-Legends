@@ -372,7 +372,7 @@
     # 强制初始化离线玩家数据
     invoke-static {}, Lcom/puddingstudio/cardgame/data/ItemManager;->getInstance()Lcom/puddingstudio/cardgame/data/ItemManager;
     move-result-object v0
-    invoke-virtual {v0}, Lcom/puddingstudio/cardgame/data/ItemManager;->initOfflinePlayer()V
+    invoke-virtual {v0}, Lcom/puddingstudio/cardgame/data/ItemManager;->clearUsrInfo()V
     
     # 确保main_scene已初始化
     iget-object v0, p0, Lcom/puddingstudio/cardgame/CardGame;->main_scene:Lcom/puddingstudio/cardgame/scene/MainScene;
@@ -620,7 +620,7 @@
     # 初始化离线玩家数据
     invoke-static {}, Lcom/puddingstudio/cardgame/data/ItemManager;->getInstance()Lcom/puddingstudio/cardgame/data/ItemManager;
     move-result-object v0
-    invoke-virtual {v0}, Lcom/puddingstudio/cardgame/data/ItemManager;->initOfflinePlayer()V
+    invoke-virtual {v0}, Lcom/puddingstudio/cardgame/data/ItemManager;->clearUsrInfo()V
     const-string v0, "离线玩家数据初始化成功"
     invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
     
