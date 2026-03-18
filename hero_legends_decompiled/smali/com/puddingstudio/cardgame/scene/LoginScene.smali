@@ -218,7 +218,9 @@
     iput v0, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->download_file_check_index:I
 
     .line 1007
-    iput-boolean v3, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->network_done:Z
+    # Offline patch: treat network bootstrap as completed by default.
+    const/4 v0, 0x1
+    iput-boolean v0, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->network_done:Z
 
     .line 107
     if-eqz p3, :cond_0
@@ -4482,6 +4484,23 @@
     add-int/lit8 v5, v5, 0x1
 
     iput v5, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->frame_count:I
+
+    # Offline fallback: if loading bar reaches 99%+, jump to ready() to avoid infinite waiting.
+    iget v5, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->loading_progress:F
+    const v6, 0x3f7d70a4    # 0.99f
+    cmpg-float v5, v5, v6
+    if-gez v5, :offline_force_ready
+    goto :offline_ready_check_done
+
+    :offline_force_ready
+    const-string v5, "offline fallback: force ready() at >=99%"
+    invoke-static {v5}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    const/4 v5, 0x1
+    iput-boolean v5, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->network_done:Z
+    invoke-virtual {p0}, Lcom/puddingstudio/cardgame/scene/LoginScene;->ready()V
+    return-void
+
+    :offline_ready_check_done
 
     .line 763
     iget-object v5, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->loading:Lcom/puddingstudio/cardgame/engine/actor/ProgressBar;
