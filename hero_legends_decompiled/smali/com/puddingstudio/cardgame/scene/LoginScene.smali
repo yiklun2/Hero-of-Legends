@@ -218,7 +218,9 @@
     iput v0, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->download_file_check_index:I
 
     .line 1007
-    iput-boolean v3, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->network_done:Z
+    # Offline patch: treat network bootstrap as completed by default.
+    const/4 v0, 0x1
+    iput-boolean v0, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->network_done:Z
 
     .line 107
     if-eqz p3, :cond_0
@@ -261,8 +263,9 @@
     move-result-object v0
     invoke-virtual {v0}, Lcom/puddingstudio/cardgame/data/ItemManager;->initOfflinePlayer()V
     
-    # 立即调用ready()跳过所有登录流程
-    invoke-virtual {p0}, Lcom/puddingstudio/cardgame/scene/LoginScene;->ready()V
+    # 不在构造函数里直接ready，避免场景尚未就绪导致闪退
+    const-string v0, "constructor offline init done, wait update() to enter ready()"
+    invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
     :try_end_constructor_patch
     .catch Ljava/lang/Exception; {:try_start_constructor_patch .. :try_end_constructor_patch} :catch_constructor_patch
     goto :constructor_complete
@@ -4483,6 +4486,23 @@
 
     iput v5, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->frame_count:I
 
+    # Offline fallback: if loading bar reaches 99%+, jump to ready() to avoid infinite waiting.
+    iget v5, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->loading_progress:F
+    const v6, 0x3f7d70a4    # 0.99f
+    cmpg-float v5, v5, v6
+    if-gez v5, :offline_force_ready
+    goto :offline_ready_check_done
+
+    :offline_force_ready
+    const-string v5, "offline fallback: force ready() at >=99%"
+    invoke-static {v5}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+    const/4 v5, 0x1
+    iput-boolean v5, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->network_done:Z
+    invoke-virtual {p0}, Lcom/puddingstudio/cardgame/scene/LoginScene;->ready()V
+    return-void
+
+    :offline_ready_check_done
+
     .line 763
     iget-object v5, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->loading:Lcom/puddingstudio/cardgame/engine/actor/ProgressBar;
 
@@ -4692,6 +4712,22 @@
     if-lt v5, v6, :cond_4
 
     .line 846
+    iget-object v5, p0, Lcom/puddingstudio/cardgame/scene/LoginScene;->login_msg:Lcom/puddingstudio/cardgame/proto/CardProto$CCLoginResponse;
+
+    if-nez v5, :cond_offline_use_server_data
+
+    # Offline fallback: no server login payload, initialize local player profile.
+    invoke-static {}, Lcom/puddingstudio/cardgame/data/ItemManager;->getInstance()Lcom/puddingstudio/cardgame/data/ItemManager;
+
+    move-result-object v5
+
+    invoke-virtual {v5}, Lcom/puddingstudio/cardgame/data/ItemManager;->initOfflinePlayer()V
+
+    const/4 v4, -0x1
+
+    goto :cond_offline_init_done
+
+    :cond_offline_use_server_data
     invoke-static {}, Lcom/puddingstudio/cardgame/data/ItemManager;->getInstance()Lcom/puddingstudio/cardgame/data/ItemManager;
 
     move-result-object v5
@@ -4701,6 +4737,8 @@
     invoke-virtual {v5, v6}, Lcom/puddingstudio/cardgame/data/ItemManager;->initPlayerData(Lcom/puddingstudio/cardgame/proto/CardProto$CCLoginResponse;)I
 
     move-result v4
+
+    :cond_offline_init_done
 
     .line 847
     .local v4, "result":I
