@@ -2497,7 +2497,7 @@
 .end method
 
 .method public buyItem(IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLcom/puddingstudio/cardgame/net/Communication$SocketCallBack;)Z
-    .locals 10
+    .locals 3
     .param p1, "type"    # I
     .param p2, "count"    # I
     .param p3, "order_id"    # Ljava/lang/String;
@@ -2510,57 +2510,37 @@
 
     .prologue
     .line 1034
+    # Offline purchase mode: complete locally without server validation.
     iput p1, p0, Lcom/puddingstudio/cardgame/data/ItemManager;->buy_item_type:I
 
-    .line 1035
     iput p2, p0, Lcom/puddingstudio/cardgame/data/ItemManager;->buy_item_count:I
 
-    .line 1036
     move-object/from16 v0, p9
 
     iput-object v0, p0, Lcom/puddingstudio/cardgame/data/ItemManager;->call_back:Lcom/puddingstudio/cardgame/net/Communication$SocketCallBack;
 
-    .line 1037
-    iget-boolean v1, p0, Lcom/puddingstudio/cardgame/data/ItemManager;->login:Z
+    const/4 v1, 0x1
 
-    if-nez v1, :cond_0
+    if-ne p1, v1, :cond_0
 
-    .line 1038
-    iput-object p3, p0, Lcom/puddingstudio/cardgame/data/ItemManager;->order_id:Ljava/lang/String;
+    int-to-long v1, p2
 
-    .line 1039
-    iput-object p4, p0, Lcom/puddingstudio/cardgame/data/ItemManager;->package_name:Ljava/lang/String;
+    invoke-virtual {p0, v1, v2}, Lcom/puddingstudio/cardgame/data/ItemManager;->addCoin(J)V
 
-    .line 1040
-    iput-object p5, p0, Lcom/puddingstudio/cardgame/data/ItemManager;->product_id:Ljava/lang/String;
+    goto :goto_0
 
-    .line 1041
-    move-object/from16 v0, p6
-
-    iput-object v0, p0, Lcom/puddingstudio/cardgame/data/ItemManager;->purchase_token:Ljava/lang/String;
-
-    .line 1042
-    move/from16 v0, p8
-
-    iput-boolean v0, p0, Lcom/puddingstudio/cardgame/data/ItemManager;->show_loading:Z
-
-    .line 1043
-    move-object/from16 v0, p7
-
-    iput-object v0, p0, Lcom/puddingstudio/cardgame/data/ItemManager;->pay_load:Ljava/lang/String;
-
-    .line 1044
-    const/4 v1, 0x0
-
-    .line 1054
-    :goto_0
-    return v1
-
-    .line 1046
     :cond_0
+    const/4 v1, 0x2
+
+    if-ne p1, v1, :goto_0
+
+    int-to-long v1, p2
+
+    invoke-virtual {p0, v1, v2}, Lcom/puddingstudio/cardgame/data/ItemManager;->addDiamond(J)V
+
+    :goto_0
     if-eqz p8, :cond_1
 
-    .line 1047
     invoke-static {}, Lcom/puddingstudio/cardgame/DoodleHelper;->getInstance()Lcom/puddingstudio/cardgame/DoodleHelper;
 
     move-result-object v1
@@ -2569,52 +2549,21 @@
 
     invoke-virtual {v1, v2}, Lcom/puddingstudio/cardgame/DoodleHelper;->showDialogLoading(Z)V
 
-    .line 1052
-    :goto_1
-    invoke-static {}, Lcom/puddingstudio/cardgame/net/CardCommunication;->getInstance()Lcom/puddingstudio/cardgame/net/CardCommunication;
+    :cond_1
+    move-object/from16 v1, p9
 
-    move-result-object v1
+    if-eqz v1, :cond_2
 
-    move v2, p1
+    const/4 v1, 0x0
 
-    move v3, p2
+    const/4 v2, 0x0
 
-    move-object v4, p3
+    invoke-interface {p9, v1, v2}, Lcom/puddingstudio/cardgame/net/Communication$SocketCallBack;->socketCallBack(Lcom/puddingstudio/cardgame/net/Communication$RequestMessage;Lcom/puddingstudio/cardgame/net/Communication$ResponseMessage;)V
 
-    move-object v5, p4
-
-    move-object v6, p5
-
-    move-object/from16 v7, p6
-
-    move-object/from16 v8, p7
-
-    move-object v9, p0
-
-    invoke-virtual/range {v1 .. v9}, Lcom/puddingstudio/cardgame/net/CardCommunication;->buyItemRequest(IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/puddingstudio/cardgame/net/Communication$SocketCallBack;)Z
-
-    .line 1054
+    :cond_2
     const/4 v1, 0x1
 
-    goto :goto_0
-
-    .line 1050
-    :cond_1
-    invoke-static {}, Lcom/puddingstudio/cardgame/DoodleHelper;->getInstance()Lcom/puddingstudio/cardgame/DoodleHelper;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Lcom/puddingstudio/cardgame/DoodleHelper;->getCardGame()Lcom/puddingstudio/cardgame/CardGame;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Lcom/puddingstudio/cardgame/CardGame;->getDialogStage()Lcom/puddingstudio/cardgame/engine/DialogStage;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Lcom/puddingstudio/cardgame/engine/DialogStage;->clearDialogs()V
-
-    goto :goto_1
+    return v1
 .end method
 
 .method public canHeroBeEat(J)Z
@@ -8253,6 +8202,84 @@
     return-void
 .end method
 
+
+.method private applyOfflineSuccessForApi(I)V
+    .locals 6
+    .param p1, "api"    # I
+
+    .prologue
+    sparse-switch p1, :sswitch_data_0
+
+    const-wide/16 v0, 0x32
+
+    invoke-virtual {p0, v0, v1}, Lcom/puddingstudio/cardgame/data/ItemManager;->addCoin(J)V
+
+    const-wide/16 v2, 0x14
+
+    invoke-virtual {p0, v2, v3}, Lcom/puddingstudio/cardgame/data/ItemManager;->addExp(J)V
+
+    return-void
+
+    :sswitch_0
+    const-wide/16 v0, 0xc8
+
+    invoke-virtual {p0, v0, v1}, Lcom/puddingstudio/cardgame/data/ItemManager;->addCoin(J)V
+
+    const-wide/16 v2, 0x64
+
+    invoke-virtual {p0, v2, v3}, Lcom/puddingstudio/cardgame/data/ItemManager;->addExp(J)V
+
+    iget-object v4, p0, Lcom/puddingstudio/cardgame/data/ItemManager;->user:Lcom/puddingstudio/cardgame/model/Player;
+
+    if-eqz v4, :cond_map_done
+
+    iget v5, v4, Lcom/puddingstudio/cardgame/model/Player;->map_normal:I
+
+    add-int/lit8 v5, v5, 0x1
+
+    iput v5, v4, Lcom/puddingstudio/cardgame/model/Player;->map_normal:I
+
+    invoke-virtual {p0}, Lcom/puddingstudio/cardgame/data/ItemManager;->notifyChangeListeners()V
+
+    :cond_map_done
+    return-void
+
+    :sswitch_1
+    const-wide/16 v0, 0x1
+
+    invoke-virtual {p0, v0, v1}, Lcom/puddingstudio/cardgame/data/ItemManager;->addDiamond(J)V
+
+    const-wide/16 v2, 0x32
+
+    invoke-virtual {p0, v2, v3}, Lcom/puddingstudio/cardgame/data/ItemManager;->addCoin(J)V
+
+    const-string v4, "offline drop: random reward granted"
+
+    invoke-virtual {p0, v4}, Lcom/puddingstudio/cardgame/data/ItemManager;->setNews(Ljava/lang/String;)V
+
+    return-void
+
+    :sswitch_2
+    const-wide/16 v0, 0x2
+
+    invoke-virtual {p0, v0, v1}, Lcom/puddingstudio/cardgame/data/ItemManager;->addDiamond(J)V
+
+    const-wide/16 v2, 0x64
+
+    invoke-virtual {p0, v2, v3}, Lcom/puddingstudio/cardgame/data/ItemManager;->addCoin(J)V
+
+    return-void
+
+    :sswitch_data_0
+    .sparse-switch
+        0x7 -> :sswitch_0
+        0xe -> :sswitch_1
+        0x14 -> :sswitch_2
+        0x15 -> :sswitch_2
+        0x28 -> :sswitch_0
+    .end sparse-switch
+.end method
+
 .method public socketCallBack(Lcom/puddingstudio/cardgame/net/Communication$RequestMessage;Lcom/puddingstudio/cardgame/net/Communication$ResponseMessage;)V
     .locals 35
     .param p1, "request"    # Lcom/puddingstudio/cardgame/net/Communication$RequestMessage;
@@ -8286,6 +8313,33 @@
 
     .line 783
     :goto_0
+    if-eqz p2, :cond_offline_return
+
+    move-object/from16 v0, p2
+
+    iget-object v2, v0, Lcom/puddingstudio/cardgame/net/Communication$ResponseMessage;->content:[B
+
+    if-nez v2, :cond_offline_continue
+
+    :cond_offline_return
+    const-string v2, "=== offline mode: empty response, apply local success fallback ==="
+
+    invoke-static {v2}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
+
+    if-eqz p1, :cond_offline_return_done
+
+    move-object/from16 v0, p1
+
+    iget v2, v0, Lcom/puddingstudio/cardgame/net/Communication$RequestMessage;->api:I
+
+    move-object/from16 v0, p0
+
+    invoke-direct {v0, v2}, Lcom/puddingstudio/cardgame/data/ItemManager;->applyOfflineSuccessForApi(I)V
+
+    :cond_offline_return_done
+    return-void
+
+    :cond_offline_continue
     :try_start_1
     move-object/from16 v0, p1
 
@@ -8369,6 +8423,16 @@
     .line 1018
     .restart local v20    # "e":Ljava/lang/Exception;
     invoke-virtual/range {v20 .. v20}, Ljava/lang/Exception;->printStackTrace()V
+
+    if-eqz p1, :goto_1
+
+    move-object/from16 v0, p1
+
+    iget v2, v0, Lcom/puddingstudio/cardgame/net/Communication$RequestMessage;->api:I
+
+    move-object/from16 v0, p0
+
+    invoke-direct {v0, v2}, Lcom/puddingstudio/cardgame/data/ItemManager;->applyOfflineSuccessForApi(I)V
 
     goto :goto_1
 
@@ -10769,7 +10833,7 @@
 
     const-wide v2, 0x3b9ac9ffL    # 999999999L
 
-    iput-wide v2, v0, Lcom/puddingstudio/cardgame/model/Player;->gold:J
+    iput-wide v2, v0, Lcom/puddingstudio/cardgame/model/Player;->coin:J
 
     iget-object v0, p0, Lcom/puddingstudio/cardgame/data/ItemManager;->user:Lcom/puddingstudio/cardgame/model/Player;
 
@@ -10787,7 +10851,7 @@
 
     const-string v1, "OfflinePlayer"
 
-    iput-object v1, v0, Lcom/puddingstudio/cardgame/model/Player;->name:Ljava/lang/String;
+    iput-object v1, v0, Lcom/puddingstudio/cardgame/model/Player;->user_name:Ljava/lang/String;
 
     :skip_init
     const/4 v0, 0x1
