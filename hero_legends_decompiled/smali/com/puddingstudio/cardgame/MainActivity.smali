@@ -2796,7 +2796,7 @@
     invoke-static {}, Lcom/puddingstudio/cardgame/data/ItemManager;->getInstance()Lcom/puddingstudio/cardgame/data/ItemManager;
     move-result-object v1
     if-eqz v1, :item_manager_ok
-    invoke-virtual {v1}, Lcom/puddingstudio/cardgame/data/ItemManager;->initOfflinePlayer()V
+    invoke-virtual {v1}, Lcom/puddingstudio/cardgame/data/ItemManager;->clearUsrInfo()V
     const-string v0, "ItemManager离线玩家数据初始化成功"
     invoke-static {v0}, Lcom/puddingstudio/cardgame/utils/LogUtils;->out(Ljava/lang/String;)V
     :item_manager_ok
