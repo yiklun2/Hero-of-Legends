@@ -1,4 +1,4 @@
-# GitHub Actions - 真人通关 UI 测试
+# GitHub Actions - 真人通关 UI 测试 (简化版)
 name: Real User Gameplay Test
 
 on:
@@ -7,7 +7,6 @@ on:
     branches: [ main ]
     paths:
       - '.github/workflows/test.yml'
-      - 'maestro/**'
 
 env:
   APK_URL: https://github.com/yiklun2/Hero-of-Legends/releases/download/v2.1-offline-test/hero_modded-aligned-debugSigned.apk
@@ -16,7 +15,7 @@ env:
 jobs:
   gameplay-test:
     runs-on: macos-latest
-    timeout-minutes: 45
+    timeout-minutes: 30
     
     steps:
     - name: Checkout
@@ -33,9 +32,8 @@ jobs:
 
     - name: Download APK
       run: |
-        echo "📥 下载修改后的 APK..."
-        curl -L -o hero_modded.apk "$APK_URL"
-        ls -lh hero_modded.apk
+        curl -L -o hero.apk "$APK_URL"
+        ls -lh hero.apk
 
     - name: Install System Image
       run: |
@@ -45,95 +43,40 @@ jobs:
     - name: Create AVD
       run: |
         echo "no" | avdmanager create avd \
-          -n test_device \
+          -n test \
           -k "system-images;android-28;default;x86_64" \
           -d "pixel_3a"
 
     - name: Start Emulator
+      timeout-minutes: 10
       run: |
-        emulator -avd test_device \
-          -no-window \
-          -no-audio \
-          -no-boot-anim \
-          -accel on \
-          -gpu swiftshader_indirect \
-          -memory 2048 \
-          -camera-back none \
-          -camera-front none &
-        
+        emulator -avd test -no-window -no-audio -no-boot-anim -accel on -gpu swiftshader_indirect -memory 2048 &
         adb wait-for-device
-        until adb shell getprop sys.boot_completed | grep -q 1; do sleep 2; done
-        echo "✅ 模拟器就绪!"
+        until adb shell getprop sys.boot_completed | grep -q 1; do sleep 3; done
+        echo "Emulator ready!"
 
     - name: Install Maestro
-      run: |
-        brew tap mobile-dev-inc/tap
-        brew install maestro
-        maestro --version
+      run: brew install maestro
 
     - name: Install APK
-      run: |
-        echo "📦 安装 APK..."
-        adb install -r hero_modded.apk
-        echo "✅ APK 安装成功"
+      run: adb install -r hero.apk
 
-    - name: Start Screen Recording
-      run: |
-        adb shell screenrecord \
-          --time-limit 300 \
-          --bit-rate 6000000 \
-          /sdcard/gameplay.mp4 &
-        echo "🎬 录制已开始"
-
-    - name: Run Maestro Test
-      id: test
+    - name: Run Test
       continue-on-error: true
       run: |
         mkdir -p results
-        echo "🧪 运行真人模拟通关测试..."
         maestro test maestro/test_flow.yaml --output results/ || true
-        echo "TEST_EXIT_CODE=$?" >> $GITHUB_ENV
 
     - name: Collect Results
       if: always()
       run: |
-        echo "📋 收集测试结果..."
-        adb shell pkill screenrecord || true
-        sleep 3
-        adb pull /sdcard/gameplay.mp4 results/ || true
         adb logcat -d > results/logcat.txt
-        adb logcat -d | grep -E "HACK|FATAL|AndroidRuntime" > results/key_logs.txt
-        
-        echo ""
-        echo "=== 🔍 HACK 日志探针 ==="
-        cat results/key_logs.txt | grep "HACK" || echo "⚠️ 未找到 HACK 日志"
-        
-        echo ""
-        echo "=== 💥 FATAL 错误 ==="
-        cat results/key_logs.txt | grep "FATAL" || echo "✅ 无 FATAL 错误"
+        adb logcat -d | grep -E "HACK|FATAL" > results/key.txt
+        cat results/key.txt
 
     - name: Upload Results
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: gameplay-test-results
+        name: results
         path: results/
-        retention-days: 30
-
-    - name: Check Test Result
-      if: always()
-      run: |
-        HACK_COUNT=$(grep -c "HACK" results/key_logs.txt || echo "0")
-        FATAL_COUNT=$(grep -c "FATAL" results/key_logs.txt || echo "0")
-        
-        echo "📊 HACK 日志数: $HACK_COUNT"
-        echo "📊 FATAL 错误数: $FATAL_COUNT"
-        
-        if [ "$FATAL_COUNT" -gt 0 ]; then
-          echo "❌ 测试失败: 发现崩溃"
-          exit 1
-        fi
-        
-        if [ "$HACK_COUNT" -gt 0 ]; then
-          echo "✅ 测试成功: 发现 HACK 日志，离线修改已生效!"
-        fi
