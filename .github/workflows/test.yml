@@ -1,0 +1,107 @@
+# GitHub Actions - 真人通关 UI 测试
+name: Real User Gameplay Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+env:
+  APK_NAME: hero_modded-aligned-debugSigned.apk
+  PACKAGE_NAME: com.puddingstudio.cardgame
+
+jobs:
+  gameplay-test:
+    runs-on: macos-latest
+    timeout-minutes: 45
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+
+    - name: Install System Image
+      run: |
+        sdkmanager "system-images;android-28;default;x86_64"
+        echo "y" | sdkmanager --licenses
+
+    - name: Create AVD
+      run: |
+        echo "no" | avdmanager create avd \
+          -n test_device \
+          -k "system-images;android-28;default;x86_64" \
+          -d "pixel_3a"
+
+    - name: Start Emulator
+      run: |
+        emulator -avd test_device \
+          -no-window \
+          -no-audio \
+          -no-boot-anim \
+          -accel on \
+          -gpu swiftshader_indirect \
+          -memory 2048 \
+          -camera-back none \
+          -camera-front none &
+        
+        adb wait-for-device
+        until adb shell getprop sys.boot_completed | grep -q 1; do sleep 2; done
+        echo "Emulator ready!"
+
+    - name: Install Maestro
+      run: |
+        brew tap mobile-dev-inc/tap
+        brew install maestro
+
+    - name: Install APK
+      run: |
+        adb install -r apk/${APK_NAME}
+
+    - name: Start Screen Recording
+      run: |
+        adb shell screenrecord \
+          --time-limit 300 \
+          --bit-rate 6000000 \
+          /sdcard/gameplay.mp4 &
+
+    - name: Run Maestro Test
+      id: test
+      continue-on-error: true
+      run: |
+        mkdir -p results
+        maestro test maestro/test_flow.yaml --output results/ || true
+
+    - name: Collect Results
+      if: always()
+      run: |
+        adb shell pkill screenrecord || true
+        sleep 3
+        adb pull /sdcard/gameplay.mp4 results/ || true
+        adb logcat -d > results/logcat.txt
+        adb logcat -d | grep -E "HACK|FATAL|AndroidRuntime" > results/key_logs.txt
+
+    - name: Check Results
+      if: always()
+      run: |
+        echo "=== HACK 日志 ==="
+        cat results/key_logs.txt | grep HACK || echo "无 HACK 日志"
+        
+        echo ""
+        echo "=== FATAL 错误 ==="
+        cat results/key_logs.txt | grep FATAL || echo "无 FATAL 错误"
+
+    - name: Upload Results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: gameplay-test-results
+        path: results/
+        retention-days: 30
