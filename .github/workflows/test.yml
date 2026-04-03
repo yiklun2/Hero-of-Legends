@@ -1,4 +1,4 @@
-# GitHub Actions - 真人通关 UI 测试 (修复版)
+# GitHub Actions - 真人通关 UI 测试 (ARM64 修复版)
 name: Real User Gameplay Test
 
 on:
@@ -7,10 +7,6 @@ on:
     branches: [ main ]
     paths:
       - '.github/workflows/test.yml'
-
-env:
-  APK_URL: https://github.com/yiklun2/Hero-of-Legends/releases/download/v2.1-offline-test/hero_modded-aligned-debugSigned.apk
-  PACKAGE_NAME: com.puddingstudio.cardgame
 
 jobs:
   gameplay-test:
@@ -32,71 +28,48 @@ jobs:
 
     - name: Download APK
       run: |
-        curl -L -o hero.apk "$APK_URL"
+        curl -L -o hero.apk "https://github.com/yiklun2/Hero-of-Legends/releases/download/v2.1-offline-test/hero_modded-aligned-debugSigned.apk"
         ls -lh hero.apk
 
-    - name: Install System Image
+    - name: Install ARM64 System Image
       run: |
-        sdkmanager "system-images;android-28;default;x86_64"
+        # 安装 ARM64 系统镜像以匹配 macOS ARM 主机
+        sdkmanager "system-images;android-28;default;arm64-v8a"
         echo "y" | sdkmanager --licenses
 
-    - name: Create AVD
+    - name: Create ARM64 AVD
       run: |
         echo "no" | avdmanager create avd \
           -n test \
-          -k "system-images;android-28;default;x86_64" \
+          -k "system-images;android-28;default;arm64-v8a" \
           -d "pixel_3a"
 
     - name: Start Emulator
-      timeout-minutes: 15
+      timeout-minutes: 20
       run: |
-        # 使用完整路径启动模拟器
-        $ANDROID_HOME/emulator/emulator -avd test -no-window -no-audio -no-boot-anim -accel on -memory 2048 &
-        
-        # 等待设备
+        $ANDROID_HOME/emulator/emulator -avd test -no-window -no-audio -no-boot-anim -memory 2048 &
         adb wait-for-device
-        
-        # 等待启动完成
-        until adb shell getprop sys.boot_completed | grep -q 1; do
-          echo "Waiting for boot..."
-          sleep 5
-        done
-        
+        until adb shell getprop sys.boot_completed | grep -q 1; do sleep 5; done
         echo "✅ Emulator ready!"
 
     - name: Install Maestro
-      run: |
-        brew tap mobile-dev-inc/tap
-        brew install maestro
+      run: brew install maestro
 
     - name: Install APK
       run: adb install -r hero.apk
 
     - name: Run Test
-      id: test
       continue-on-error: true
       run: |
         mkdir -p results
-        
-        # 启动录制
-        adb shell screenrecord --time-limit 180 /sdcard/test.mp4 &
-        
-        # 运行测试
         maestro test maestro/test_flow.yaml --output results/ || true
-        
-        # 停止录制
-        adb shell pkill screenrecord || true
-        sleep 2
-        adb pull /sdcard/test.mp4 results/ || true
 
     - name: Collect Results
       if: always()
       run: |
         adb logcat -d > results/logcat.txt
-        adb logcat -d | grep -E "HACK|FATAL|AndroidRuntime" > results/key_logs.txt || true
-        
-        echo "=== 关键日志 ==="
-        cat results/key_logs.txt || echo "无关键日志"
+        adb logcat -d | grep -E "HACK|FATAL|AndroidRuntime" > results/key.txt || true
+        cat results/key.txt || echo "无关键日志"
 
     - name: Upload Results
       if: always()
