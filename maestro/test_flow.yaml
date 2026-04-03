@@ -1,0 +1,172 @@
+# Maestro 真人模拟通关测试脚本
+# 强制验证：进副本 -> 打完 -> 结算 -> 钱涨了
+
+appId: com.puddingstudio.cardgame
+
+# ===== 环境设置 =====
+onFlowStart:
+  # 强制断网
+  - adbShell: svc wifi disable
+  - adbShell: svc data disable
+  - adbShell: settings put global airplane_mode_on 1
+  - adbShell: am broadcast -a android.intent.action.AIRPLANE_MODE --ez state true
+
+# ===== 主测试流程 =====
+name: 真人通关验证
+
+# 步骤 1: 启动游戏
+- launchApp:
+    appId: com.puddingstudio.cardgame
+    clearState: false
+
+# 等待游戏加载 (LibGDX 需要时间)
+- extendedWaitUntil:
+    visible: ".*"
+    timeout: 20000
+
+# 截图: 启动状态
+- takeScreenshot: 01_after_launch
+
+# 步骤 2: 检查是否闪退
+- assertNotVisible: 
+    text: ".*stopped.*|.*crashed.*|.*error.*"
+
+# 等待主界面
+- extendedWaitUntil:
+    visible:
+      id: ".*"
+    timeout: 30000
+
+- takeScreenshot: 02_main_screen
+
+# 步骤 3: 记录初始资源（如果有显示）
+- runScript:
+    path: check_resources.sh
+    env:
+      PHASE: "START"
+
+# 步骤 4: 尝试点击进入副本/冒险
+# 方案 A: 文本匹配
+- tapOn:
+    text: ".*冒险.*|.*副本.*|.*地图.*|.*关卡.*|.*战斗.*"
+    retryTapIfNoChange: false
+    optional: true
+
+# 方案 B: 如果文本匹配失败，点击屏幕常见位置
+- tapOn:
+    point: "50%,70%"
+    optional: true
+
+- sleep: 3000
+
+- takeScreenshot: 03_after_tap
+
+# 等待关卡列表加载
+- extendedWaitUntil:
+    visible: ".*"
+    timeout: 15000
+
+- takeScreenshot: 04_stage_list
+
+# 步骤 5: 选择一个关卡
+- tapOn:
+    id: ".*stage.*|.*level.*|.*item.*"
+    optional: true
+
+- tapOn:
+    point: "50%,50%"
+    optional: true
+
+- sleep: 2000
+
+- takeScreenshot: 05_stage_selected
+
+# 步骤 6: 点击开始/进入/挑战
+- tapOn:
+    text: ".*开始.*|.*进入.*|.*挑战.*|.*战斗.*|.*attack.*|.*start.*"
+    optional: true
+
+- tapOn:
+    point: "80%,80%"
+    optional: true
+
+- sleep: 2000
+
+- takeScreenshot: 06_entering_battle
+
+# 步骤 7: 等待战斗加载
+- extendedWaitUntil:
+    visible: ".*"
+    timeout: 30000
+
+- takeScreenshot: 07_in_battle
+
+# 步骤 8: 模拟战斗过程 (点击攻击或等待自动战斗)
+- sleep: 5000
+
+# 尝试点击攻击按钮
+- tapOn:
+    text: ".*攻击.*|.*技能.*|.*attack.*|.*skill.*"
+    optional: true
+    repeat: 3
+
+- tapOn:
+    point: "50%,80%"
+    optional: true
+    repeat: 3
+
+- sleep: 3000
+
+- takeScreenshot: 08_battling
+
+# 步骤 9: 等待战斗结束 (最多等待 60 秒)
+- extendedWaitUntil:
+    visible:
+      text: ".*结算.*|.*胜利.*|.*完成.*|.*奖励.*|.*获得.*|.*victory.*|.*win.*"
+    timeout: 60000
+
+- takeScreenshot: 09_victory_screen
+
+# 步骤 10: 🔥 关键验证 - 检查胜利/结算界面
+- assertVisible:
+    text: ".*结算.*|.*胜利.*|.*奖励.*|.*获得.*"
+
+- takeScreenshot: 10_reward_popup
+
+# 步骤 11: 点击领取奖励
+- tapOn:
+    text: ".*领取.*|.*确定.*|.*继续.*|.*claim.*|.*ok.*|.*confirm.*"
+    optional: true
+
+- tapOn:
+    point: "50%,80%"
+    optional: true
+
+- sleep: 2000
+
+- takeScreenshot: 11_after_claim
+
+# 步骤 12: 🔥 终极验证 - 检查资源增加
+# 等待返回主界面
+- extendedWaitUntil:
+    visible: ".*"
+    timeout: 15000
+
+- takeScreenshot: 12_back_to_main
+
+# 再次记录资源
+- runScript:
+    path: check_resources.sh
+    env:
+      PHASE: "END"
+
+# 步骤 13: 最终断言 - 必须看到资源数值
+- assertVisible:
+    id: ".*diamond.*|.*coin.*|.*gold.*|.*resource.*|.*money.*"
+
+- takeScreenshot: 99_final_verification
+
+# ===== 测试完成 =====
+onFlowComplete:
+  - adbShell: logcat -d | grep HACK
+  - takeScreenshot: ZZ_test_complete
