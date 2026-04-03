@@ -1,4 +1,4 @@
-# GitHub Actions - 真人通关 UI 测试 (简化版)
+# GitHub Actions - 真人通关 UI 测试 (修复版)
 name: Real User Gameplay Test
 
 on:
@@ -15,7 +15,7 @@ env:
 jobs:
   gameplay-test:
     runs-on: macos-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     
     steps:
     - name: Checkout
@@ -48,35 +48,59 @@ jobs:
           -d "pixel_3a"
 
     - name: Start Emulator
-      timeout-minutes: 10
+      timeout-minutes: 15
       run: |
-        emulator -avd test -no-window -no-audio -no-boot-anim -accel on -gpu swiftshader_indirect -memory 2048 &
+        # 使用完整路径启动模拟器
+        $ANDROID_HOME/emulator/emulator -avd test -no-window -no-audio -no-boot-anim -accel on -memory 2048 &
+        
+        # 等待设备
         adb wait-for-device
-        until adb shell getprop sys.boot_completed | grep -q 1; do sleep 3; done
-        echo "Emulator ready!"
+        
+        # 等待启动完成
+        until adb shell getprop sys.boot_completed | grep -q 1; do
+          echo "Waiting for boot..."
+          sleep 5
+        done
+        
+        echo "✅ Emulator ready!"
 
     - name: Install Maestro
-      run: brew install maestro
+      run: |
+        brew tap mobile-dev-inc/tap
+        brew install maestro
 
     - name: Install APK
       run: adb install -r hero.apk
 
     - name: Run Test
+      id: test
       continue-on-error: true
       run: |
         mkdir -p results
+        
+        # 启动录制
+        adb shell screenrecord --time-limit 180 /sdcard/test.mp4 &
+        
+        # 运行测试
         maestro test maestro/test_flow.yaml --output results/ || true
+        
+        # 停止录制
+        adb shell pkill screenrecord || true
+        sleep 2
+        adb pull /sdcard/test.mp4 results/ || true
 
     - name: Collect Results
       if: always()
       run: |
         adb logcat -d > results/logcat.txt
-        adb logcat -d | grep -E "HACK|FATAL" > results/key.txt
-        cat results/key.txt
+        adb logcat -d | grep -E "HACK|FATAL|AndroidRuntime" > results/key_logs.txt || true
+        
+        echo "=== 关键日志 ==="
+        cat results/key_logs.txt || echo "无关键日志"
 
     - name: Upload Results
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: results
+        name: test-results
         path: results/
