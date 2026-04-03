@@ -4,10 +4,13 @@ name: Real User Gameplay Test
 on:
   workflow_dispatch:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
+    paths:
+      - '.github/workflows/test.yml'
+      - 'maestro/**'
 
 env:
-  APK_NAME: hero_modded-aligned-debugSigned.apk
+  APK_URL: https://github.com/yiklun2/Hero-of-Legends/releases/download/v2.1-offline-test/hero_modded-aligned-debugSigned.apk
   PACKAGE_NAME: com.puddingstudio.cardgame
 
 jobs:
@@ -27,6 +30,12 @@ jobs:
 
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
+
+    - name: Download APK
+      run: |
+        echo "📥 下载修改后的 APK..."
+        curl -L -o hero_modded.apk "$APK_URL"
+        ls -lh hero_modded.apk
 
     - name: Install System Image
       run: |
@@ -54,16 +63,19 @@ jobs:
         
         adb wait-for-device
         until adb shell getprop sys.boot_completed | grep -q 1; do sleep 2; done
-        echo "Emulator ready!"
+        echo "✅ 模拟器就绪!"
 
     - name: Install Maestro
       run: |
         brew tap mobile-dev-inc/tap
         brew install maestro
+        maestro --version
 
     - name: Install APK
       run: |
-        adb install -r apk/${APK_NAME}
+        echo "📦 安装 APK..."
+        adb install -r hero_modded.apk
+        echo "✅ APK 安装成功"
 
     - name: Start Screen Recording
       run: |
@@ -71,32 +83,34 @@ jobs:
           --time-limit 300 \
           --bit-rate 6000000 \
           /sdcard/gameplay.mp4 &
+        echo "🎬 录制已开始"
 
     - name: Run Maestro Test
       id: test
       continue-on-error: true
       run: |
         mkdir -p results
+        echo "🧪 运行真人模拟通关测试..."
         maestro test maestro/test_flow.yaml --output results/ || true
+        echo "TEST_EXIT_CODE=$?" >> $GITHUB_ENV
 
     - name: Collect Results
       if: always()
       run: |
+        echo "📋 收集测试结果..."
         adb shell pkill screenrecord || true
         sleep 3
         adb pull /sdcard/gameplay.mp4 results/ || true
         adb logcat -d > results/logcat.txt
         adb logcat -d | grep -E "HACK|FATAL|AndroidRuntime" > results/key_logs.txt
-
-    - name: Check Results
-      if: always()
-      run: |
-        echo "=== HACK 日志 ==="
-        cat results/key_logs.txt | grep HACK || echo "无 HACK 日志"
         
         echo ""
-        echo "=== FATAL 错误 ==="
-        cat results/key_logs.txt | grep FATAL || echo "无 FATAL 错误"
+        echo "=== 🔍 HACK 日志探针 ==="
+        cat results/key_logs.txt | grep "HACK" || echo "⚠️ 未找到 HACK 日志"
+        
+        echo ""
+        echo "=== 💥 FATAL 错误 ==="
+        cat results/key_logs.txt | grep "FATAL" || echo "✅ 无 FATAL 错误"
 
     - name: Upload Results
       if: always()
@@ -105,3 +119,21 @@ jobs:
         name: gameplay-test-results
         path: results/
         retention-days: 30
+
+    - name: Check Test Result
+      if: always()
+      run: |
+        HACK_COUNT=$(grep -c "HACK" results/key_logs.txt || echo "0")
+        FATAL_COUNT=$(grep -c "FATAL" results/key_logs.txt || echo "0")
+        
+        echo "📊 HACK 日志数: $HACK_COUNT"
+        echo "📊 FATAL 错误数: $FATAL_COUNT"
+        
+        if [ "$FATAL_COUNT" -gt 0 ]; then
+          echo "❌ 测试失败: 发现崩溃"
+          exit 1
+        fi
+        
+        if [ "$HACK_COUNT" -gt 0 ]; then
+          echo "✅ 测试成功: 发现 HACK 日志，离线修改已生效!"
+        fi
